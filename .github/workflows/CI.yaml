@@ -1,0 +1,29 @@
+name: CI
+on: 
+  pull_request: 
+    branches: 
+      - "main"
+  push:
+    paths-ignore: 
+      - "README.md"
+      - ".gitignore"
+    branches:
+      - "main"
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy: 
+      matrix: 
+        dotnet-version: ["4.8.x"]
+    steps: 
+      - uses: actions/checkout@v3
+      - name: setup .NET CORE SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
+        with: 
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: install-dependencies
+        run: dotnet-restore
+      - name: build
+        run: dotnet build --configuration Release --no-restore
+      - name: test
+        run: dotnet test --no-restore --verbosity normal
