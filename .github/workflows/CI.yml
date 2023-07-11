@@ -10,20 +10,34 @@ on:
     branches:
       - "main"
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
-    strategy: 
-      matrix: 
-        dotnet-core-version: ["6.0.x"]
-    steps: 
+  build:
+    name: Build and Test
+    runs-on: windows-latest
+
+    env:
+      solution: pnp-tool.sln
+
+    steps:
       - uses: actions/checkout@v3
-      - name: setup .NET CORE SDK ${{ matrix.dotnet-core-version }}
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
-        with: 
-          dotnet-version: ${{ matrix.dotnet-core-version }}
-      - name: install-dependencies
-        run: dotnet restore
-      - name: build
-        run: dotnet build
-      - name: test
-        run: dotnet test
+        with:
+          dotnet-version: 7.x
+          
+      - name: Restore dependencies
+        run: dotnet restore ${{ env.solution }}
+  
+      - name: Build
+        run: dotnet build ${{ env.solution }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
+        env:
+          MDIXVersion: "0.0.0"
+          MDIXColorsVersion: "0.0.0"
+          MDIXMahAppsVersion: "0.0.0"
+  
+      - name: Test
+        timeout-minutes: 20
+        run: dotnet test ${{ env.solution }} --no-build --verbosity normal --blame-crash
+  
+  #    - name: Build NuGets
+  #      run: .\Scripts\BuildNugets.ps1 -MDIXVersion ${{ inputs.mdix-version }} -MDIXColorsVersion ${{ inputs.mdix-colors-version }} -MDIXMahAppsVersion ${{ inputs.mdix-mahapps-version }}
