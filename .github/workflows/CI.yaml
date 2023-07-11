@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy: 
       matrix: 
-        dotnet-version: ["4.8.0"]
+        dotnet-core-version: ["7.0.x"]
     steps: 
       - uses: actions/checkout@v3
-      - name: setup .NET CORE SDK ${{ matrix.dotnet-version }}
+      - name: setup .NET CORE SDK ${{ matrix.dotnet-core-version }}
         uses: actions/setup-dotnet@v3
         with: 
-          dotnet-version: ${{ matrix.dotnet-version }}
+          dotnet-version: ${{ matrix.dotnet-core-version }}
       - name: install-dependencies
         run: dotnet-restore
       - name: build
