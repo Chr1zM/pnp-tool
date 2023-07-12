@@ -83,7 +83,6 @@ jobs:
         AppxBundle: Never
         BuildMode: SideloadOnly
         Configuration: Debug
-        TargetPlatform: ${{ matrix.targetplatform }}
 
     # Remove the .pfx
 #    - name: Remove the .pfx
