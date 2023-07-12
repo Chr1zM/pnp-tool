@@ -1,0 +1,62 @@
+name: CI
+on: 
+  pull_request: 
+    branches: 
+      - "main"
+  push:
+    paths-ignore: 
+      - "README.md"
+      - ".gitignore"
+    branches:
+      - "main"
+jobs:
+
+  build:
+
+    strategy:
+      matrix:
+        targetplatform: [x64]
+
+    runs-on: windows-latest
+
+    env:
+      App_Packages_Directory: AppPackages
+      Solution_Path: pnp-tool.sln
+      Wpf_Project_Path: pnp-tool.csproj
+      Actions_Allow_Unsecure_Commands: true # Allows AddPAth and SetEnv commands
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+
+    # Use Nerdbank.GitVersioning to set version variables: https://github.com/AArnott/nbgv
+    - name: Use Nerdbank.GitVersioning to set version variables
+      uses: dotnet/nbgv@master
+      id: nbgv
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.0.x'
+
+    # Add  MsBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.1
+
+    # Restore the application
+    - name:  Restore the Wpf application to populate the obj folder
+      run: msbuild $env:Solution_Path /t:Restore /p:Configuration=$env:Configuration /p:RuntimeIdentifier=$env:RuntimeIdentifier
+      env:
+        Configuration: Debug
+        RuntimeIdentifier: win-${{ matrix.targetplatform }}
+
+    # Build the Windows Application Packaging project
+    - name: Build the Windows Application Packaging Project (wapproj)
+      run: msbuild $env:Solution_Path 
+      env:
+        AppxBundle: Never
+        BuildMode: SideloadOnly
+
