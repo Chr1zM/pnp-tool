@@ -83,7 +83,7 @@ jobs:
         AppxBundle: Never
         BuildMode: SideloadOnly
         Configuration: Debug
-
+        TargetPlatform: ${{ matrix.targetplatform }}
     # Remove the .pfx
 #    - name: Remove the .pfx
 #      run: Remove-Item -path $env:Wap_Project_Directory\$env:SigningCertificate
