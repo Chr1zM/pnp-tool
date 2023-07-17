@@ -21,6 +21,8 @@ namespace pnp_tool
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int tabCounter = 1;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,15 +36,30 @@ namespace pnp_tool
         /// <param name="e">The event arguments.</param>
         private void AddNewTabButton_Click(object sender, RoutedEventArgs e)
         {
+            Frame sheetFrame = new Frame();
+            sheetFrame.Content = new CharacterSheetPage();
+
             TabItem newTabItem = new TabItem();
             // TODO: Give the Tab (CharacterSheet) a Name https://github.com/Chr1zM/pnp-tool/issues/11
-            newTabItem.Header = "New Character Sheet";
-            newTabItem.Content = new CharacterSheetPage();
+            // Am besten => Dialog öffnen und Namen eintippen
+            // bearbeitbar machen => Rechtsklick oder Button einbauen zum nachbearbeiten des Namens
+            newTabItem.Header = "Character Sheet " + tabCounter;
+            newTabItem.Content = sheetFrame;
 
             CharacterSheetTabs.Items.Add(newTabItem);
+            tabCounter++;
 
             // Navigate to the created Tab
-            //CharacterSheetTabs.SelectedItem = newTabItem;
+            CharacterSheetTabs.SelectedItem = newTabItem;
+        }
+
+        private void RemoveTabButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.DataContext is TabItem tabItem)
+            {
+                // Entferne den Tab aus dem TabControl
+                CharacterSheetTabs.Items.Remove(tabItem);
+            }
         }
     }
 }

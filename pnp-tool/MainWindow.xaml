@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pnp_tool"
+        xmlns:characterSheet="clr-namespace:pnp_tool.CharacterSheet"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -11,42 +12,37 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily= "{StaticResource GothicGame}"
+        FontFamily= "{StaticResource MaterialDesignFont}"
         Title="Pen and Paper Tool" Height="800" Width="900" Icon="./Images/favicon.ico">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="CharacterSheetTabs" TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10">
+        <TabControl x:Name="CharacterSheetTabs" TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10" ItemsSource="{Binding CustomTabs}" SelectedItem="{Binding SelectedTab}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
+                        <Button Command="{Binding CloseCommand}">
+                            <Button.Template>
+                                <ControlTemplate> <!-- TODO -->
+                                    <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
 
-            <TabItem Name="CharacterSheet1" Header="Character Sheet 1">
-                <TabItem.Content>
-                    <TextBlock TextWrapping="WrapWithOverflow">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        <LineBreak/>
-                        <LineBreak/>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </TextBlock>
-                </TabItem.Content>
-            </TabItem>
-
-            <TabItem Name="CharacterSheet2" Header="Character Sheet 2">
-                <TabItem.Content>
-                    <!-- CharacterSheetPage loading in to Frame -->
-                    <Frame Source="./CharacterSheet/CharacterSheetPage.xaml"/>
-                </TabItem.Content>
+            <TabItem Header="Platzhalter" x:Name="AddTabPlaceholder" Width="200">
             </TabItem>
         </TabControl>
 
         <!-- Button zum Hinzufügen eines neuen Tabs -->
-        <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="AddNewTabButton_Click">Neuen Tab hinzufügen</Button>
+        <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" Click="AddNewTabButton_Click">Neuen Tab hinzufügen</Button>
     </Grid>
 </Window>
