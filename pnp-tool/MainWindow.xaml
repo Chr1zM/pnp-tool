@@ -12,8 +12,41 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Pen and Paper Tool" Height="450" Width="800">
+        Title="Pen and Paper Tool" Height="750" Width="1100">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TabControl x:Name="CharacterSheetTabs" TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10">
+
+            <TabItem Name="CharacterSheet1" Header="Character Sheet 1">
+                <TabItem.Content>
+                    <TextBlock TextWrapping="WrapWithOverflow">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <LineBreak/>
+                        <LineBreak/>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </TextBlock>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem Name="CharacterSheet2" Header="Character Sheet 2">
+                <TabItem.Content>
+                    <!-- CharacterSheetPage loading in to Frame -->
+                    <Frame Source="./CharacterSheet/CharacterSheetPage.xaml"/>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+
+        <!-- Button zum Hinzufügen eines neuen Tabs -->
+        <Button Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="AddNewTabButton_Click">Neuen Tab hinzufügen</Button>
     </Grid>
 </Window>
