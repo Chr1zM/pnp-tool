@@ -11,8 +11,8 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Pen and Paper Tool" Height="750" Width="1100">
+        FontFamily= "{StaticResource GothicGame}"
+        Title="Pen and Paper Tool" Height="800" Width="900" Icon="./Images/favicon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
