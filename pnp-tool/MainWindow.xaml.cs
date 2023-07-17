@@ -30,10 +30,10 @@ namespace pnp_tool
 
         /// <summary>
         /// Creates a new tab item with a character sheet page and adds it to the tab control.
-        /// <br/> Optionally, selects the newly added tab to display it.
+        /// <br/> Selects the created tab to display it.
         /// </summary>
-        /// <param name="sender">The object that triggered the event.</param>
-        /// <param name="e">The event arguments.</param>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddNewTabButton_Click(object sender, RoutedEventArgs e)
         {
             Frame sheetFrame = new Frame();
@@ -53,13 +53,14 @@ namespace pnp_tool
             CharacterSheetTabs.SelectedItem = newTabItem;
         }
 
+        /// <summary>
+        /// Deletes a tab item and removes it from the tab control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveTabButton_Click(object sender, RoutedEventArgs e)
         {
-            if (sender is Button button && button.DataContext is TabItem tabItem)
-            {
-                // Entferne den Tab aus dem TabControl
-                CharacterSheetTabs.Items.Remove(tabItem);
-            }
+            if (sender is Button button && button.DataContext is TabItem tabItem) CharacterSheetTabs.Items.Remove(tabItem);
         }
     }
 }
