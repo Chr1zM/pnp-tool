@@ -29,7 +29,8 @@
                         <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
                         <Button Command="{Binding CloseCommand}">
                             <Button.Template>
-                                <ControlTemplate> <!-- TODO -->
+                                <ControlTemplate>
+                                    <!-- TODO -->
                                     <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
                                 </ControlTemplate>
                             </Button.Template>
@@ -41,7 +42,7 @@
             <TabItem Header="Platzhalter" x:Name="AddTabPlaceholder" Width="200">
             </TabItem>
         </TabControl>
-
+        
         <!-- Button zum Hinzufügen eines neuen Tabs -->
         <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" Click="AddNewTabButton_Click">Neuen Tab hinzufügen</Button>
     </Grid>
