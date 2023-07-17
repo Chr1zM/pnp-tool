@@ -13,6 +13,5 @@
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="GothicGame">pack://application:,,,/fonts/#Gothic Titel Offiziell</FontFamily>
         </ResourceDictionary>
-        
     </Application.Resources>
 </Application>

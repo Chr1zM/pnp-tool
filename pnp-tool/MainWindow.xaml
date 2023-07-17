@@ -11,7 +11,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily= "{StaticResource GothicGame}"
+        FontFamily="{StaticResource GothicGame}"
         Title="Pen and Paper Tool" Height="800" Width="900" Icon="./Images/favicon.ico">
     <Grid>
     </Grid>
