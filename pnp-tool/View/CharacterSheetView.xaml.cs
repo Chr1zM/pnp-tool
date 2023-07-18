@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace pnp_tool.CharacterSheet
+namespace pnp_tool.View
 {
     /// <summary>
-    /// Interaction logic for CharacterSheetPage.xaml
+    /// Interaction logic for CharacterSheetView.xaml
     /// </summary>
-    public partial class CharacterSheetPage : Page
+    public partial class CharacterSheetView : UserControl
     {
-        public CharacterSheetPage()
+        public CharacterSheetView()
         {
             InitializeComponent();
         }

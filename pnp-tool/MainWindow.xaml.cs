@@ -1,18 +1,7 @@
-﻿using pnp_tool.CharacterSheet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using pnp_tool.View;
+using pnp_tool.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace pnp_tool
 {
@@ -26,6 +15,7 @@ namespace pnp_tool
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
 
         /// <summary>
@@ -37,7 +27,7 @@ namespace pnp_tool
         private void AddNewTabButton_Click(object sender, RoutedEventArgs e)
         {
             Frame sheetFrame = new Frame();
-            sheetFrame.Content = new CharacterSheetPage();
+            sheetFrame.Content = new CharacterSheetView();
 
             TabItem newTabItem = new TabItem();
             // TODO: Give the Tab (CharacterSheet) a Name https://github.com/Chr1zM/pnp-tool/issues/11
@@ -53,14 +43,5 @@ namespace pnp_tool
             CharacterSheetTabs.SelectedItem = newTabItem;
         }
 
-        /// <summary>
-        /// Deletes a tab item and removes it from the tab control.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RemoveTabButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button && button.DataContext is TabItem tabItem) CharacterSheetTabs.Items.Remove(tabItem);
-        }
     }
 }

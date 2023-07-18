@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pnp_tool"
-        xmlns:characterSheet="clr-namespace:pnp_tool.CharacterSheet"
+        xmlns:viewModel="clr-namespace:pnp_tool.ViewModel"
+        xmlns:view="clr-namespace:pnp_tool.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -15,6 +16,11 @@
         FontFamily= "{StaticResource MaterialDesignFont}"
         Title="Pen and Paper Tool" Height="800" Width="900" Icon="./Images/favicon.ico">
 
+    <!-- Setzen Sie das DataContext auf das MainWindowViewModel -->
+    <Window.DataContext>
+        <viewModel:MainViewModel />
+    </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -22,28 +28,30 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="CharacterSheetTabs" TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10" ItemsSource="{Binding CustomTabs}" SelectedItem="{Binding SelectedTab}">
+        <TabControl x:Name="CharacterSheetTabs" TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10"
+                    ItemsSource="{Binding Tabs}">
             <TabControl.ItemTemplate>
+                <!-- DataTemplate für die Tab-Header -->
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding}" VerticalAlignment="Center"/>
-                        <Button Command="{Binding CloseCommand}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <!-- TODO -->
-                                    <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
+                    <TextBlock>
+                        <Run Text="{Binding TabTitle}" />
+                        <Hyperlink Command="{Binding RemoveTabCommand}" 
+                                   CommandParameter="{Binding TabTitle}">
+                            X
+                        </Hyperlink>
+                    </TextBlock>
                 </DataTemplate>
             </TabControl.ItemTemplate>
-
-            <TabItem Header="Platzhalter" x:Name="AddTabPlaceholder" Width="200">
-            </TabItem>
+            <TabControl.ContentTemplate>
+                <!-- DataTemplate für den Inhalt der Tabs -->
+                <DataTemplate>
+                    <view:CharacterSheetView />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
         </TabControl>
-        
+
         <!-- Button zum Hinzufügen eines neuen Tabs -->
-        <Button Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="5" Click="AddNewTabButton_Click">Neuen Tab hinzufügen</Button>
+        <Button Content="Neuen Tab Hinzufügen"  HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                Grid.Row="2" Margin="5" Command="{Binding AddTabCommand}" />
     </Grid>
 </Window>
