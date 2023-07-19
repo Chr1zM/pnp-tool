@@ -1,5 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using pnp_tool.Model;
+using pnp_tool.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +12,7 @@ using System.Windows.Input;
 
 namespace pnp_tool.ViewModel
 {
-    internal class MainViewModel
+    public class MainViewModel : ViewModelBase
     {
         public ObservableCollection<Tab> Tabs { get; }
         public RelayCommand AddTabCommand { get; }
@@ -30,7 +32,9 @@ namespace pnp_tool.ViewModel
         /// </summary>
         private void AddTab()
         {
-            Tabs.Add(new Tab());
+            CharacterSheetView characterSheet = new CharacterSheetView();
+
+            Tabs.Add(new Tab(this, characterSheet));
             // TODO display / select the created Tab
         }
 
@@ -41,6 +45,7 @@ namespace pnp_tool.ViewModel
         private void RemoveTab(Tab tab)
         {
             // TODO kommt nicht hier hin
+            System.Diagnostics.Debug.WriteLine("RemoveTab method called");
             if (tab != null) Tabs.Remove(tab);
         }
     }

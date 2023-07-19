@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using pnp_tool.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +14,22 @@ namespace pnp_tool.Model
         private static int getNextId() { return Id++; }
 
         public string TabTitle { get; set; }
+        public object TabContent { get; set; }
+        public MainViewModel ViewModel { get; set; }
 
-        public Tab(string title)
+        public Tab(string title, object tabContent)
         {
             TabTitle = title;
+            TabContent = tabContent;
         }
 
-        public Tab()
+        public Tab(MainViewModel viewModel, object tabContent)
         {
+            ViewModel = viewModel;
             TabTitle = "Tab" + getNextId();
+            TabContent = tabContent;
         }
-        
+
+        public RelayCommand<Tab> RemoveTabCommand => ViewModel.RemoveTabCommand;
     }
 }

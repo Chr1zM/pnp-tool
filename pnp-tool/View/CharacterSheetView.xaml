@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:pnp_tool.View"
+             xmlns:viewModel="clr-namespace:pnp_tool.ViewModel"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -14,7 +15,12 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily= "{StaticResource MaterialDesignFont}"
              d:DesignHeight="674" d:DesignWidth="955">
-    
+
+    <!-- Setzen Sie das DataContext auf das MainWindowViewModel -->
+    <UserControl.DataContext>
+        <viewModel:MainViewModel />
+    </UserControl.DataContext>
+
     <Grid>
         <!-- TODO: Layout für den Charakterbogen -->
         <!-- Name, Alter, Klasse, Attribute usw. -->

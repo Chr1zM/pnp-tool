@@ -28,15 +28,15 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TabControl x:Name="CharacterSheetTabs" TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10"
+        <TabControl TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10"
                     ItemsSource="{Binding Tabs}">
             <TabControl.ItemTemplate>
                 <!-- DataTemplate für die Tab-Header -->
                 <DataTemplate>
                     <TextBlock>
                         <Run Text="{Binding TabTitle}" />
-                        <Hyperlink Command="{Binding RemoveTabCommand}" 
-                                   CommandParameter="{Binding TabTitle}">
+                        <Hyperlink Command="{Binding RemoveTabCommand}"
+                                   CommandParameter="{Binding}">
                             X
                         </Hyperlink>
                     </TextBlock>
@@ -45,7 +45,8 @@
             <TabControl.ContentTemplate>
                 <!-- DataTemplate für den Inhalt der Tabs -->
                 <DataTemplate>
-                    <view:CharacterSheetView />
+                    <!-- Hier den Inhalt des Tabs basierend auf der Content-Eigenschaft des Tabs anzeigen -->
+                    <ContentPresenter Content="{Binding TabContent}" />
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
