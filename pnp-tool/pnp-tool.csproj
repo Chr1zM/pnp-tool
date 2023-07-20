@@ -85,6 +85,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\TabUtils.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\CharacterSheetView.xaml.cs">
       <DependentUpon>CharacterSheetView.xaml</DependentUpon>
