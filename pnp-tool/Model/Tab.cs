@@ -12,9 +12,6 @@ namespace pnp_tool.Model
 {
     public class Tab
     {
-        /* Statics */
-        private static int Id = 1;
-        private static int getNextId() { return Id++; }
 
         /* Event Attributes */
         public event EventHandler CloseRequested;
@@ -33,9 +30,9 @@ namespace pnp_tool.Model
             CloseCommand = new ActionCommand(OnCloseRequested);
         }
 
-        public Tab(object content)
+        public Tab(int index, object content)
         {
-            Title = "Tab " + getNextId();
+            Title = "Tab " + index;
             Content = content;
 
             CloseCommand = new ActionCommand(OnCloseRequested);

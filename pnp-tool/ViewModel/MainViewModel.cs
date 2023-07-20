@@ -63,7 +63,7 @@ namespace pnp_tool.ViewModel
 
             CharacterSheetView characterSheet = new CharacterSheetView();
 
-            Tab tab = new Tab(characterSheet);
+            Tab tab = new Tab(Tabs.Count + 1, characterSheet);
             Tabs.Add(tab);
 
             // display the created Tab
