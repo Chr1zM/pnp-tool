@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="pnp_tool.View.CharacterSheetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:pnp_tool.View"
+             xmlns:viewModel="clr-namespace:pnp_tool.ViewModel"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily= "{StaticResource MaterialDesignFont}"
+             d:DesignHeight="782" d:DesignWidth="1000">
+    <!-- TODO: Set DataContext auf das CharacterSheetViewModel -->
+
+    <Grid>
+        <!-- TODO: Layout für den Charakterbogen -->
+        <!-- Name, Alter, Klasse, Attribute usw. -->
+        <TextBlock >Characterbogen erfolgreich geladen</TextBlock>
+    </Grid>
+    
+</UserControl>
