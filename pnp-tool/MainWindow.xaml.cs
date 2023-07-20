@@ -1,7 +1,8 @@
-﻿using pnp_tool.View;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MaterialDesignThemes.Wpf;
 using pnp_tool.ViewModel;
+using System;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace pnp_tool
 {
@@ -14,6 +15,11 @@ namespace pnp_tool
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+
+            Messenger.Default.Register<SnackbarMessage>(
+                this,
+                (message) => MainSnackbar.MessageQueue.Enqueue(message.Content, null, null, null, false, true)
+            );
         }
     }
 }

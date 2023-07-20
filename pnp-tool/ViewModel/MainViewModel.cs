@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Xaml.Behaviors.Core;
 using pnp_tool.Model;
 using pnp_tool.View;
@@ -10,12 +12,16 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace pnp_tool.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private const int MAX_TABS = 16;
+
         public ObservableCollection<Tab> Tabs { get; }
         public ICommand AddTabCommand { get; }
 
@@ -49,6 +55,12 @@ namespace pnp_tool.ViewModel
         /// </summary>
         private void AddTab()
         {
+            if (Tabs.Count == MAX_TABS)
+            {
+                Messenger.Default.Send(new SnackbarMessage { Content = "Maximale Anzahl an Tabs erreicht!" });
+                return;
+            }
+
             CharacterSheetView characterSheet = new CharacterSheetView();
 
             Tab tab = new Tab(characterSheet);
