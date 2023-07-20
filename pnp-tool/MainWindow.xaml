@@ -14,11 +14,11 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily= "{StaticResource MaterialDesignFont}"
-        Title="Pen and Paper Tool" Height="800" Width="900" Icon="./Images/favicon.ico">
+        Title="Pen and Paper Tool" Height="900" Width="1200" Icon="./Images/favicon.ico">
 
-    <!-- Setzen Sie das DataContext auf das MainWindowViewModel -->
+    <!-- Set DataContext to MainViewModel -->
     <Window.DataContext>
-        <viewModel:MainViewModel />
+        <viewModel:MainViewModel/>
     </Window.DataContext>
 
     <Grid>
@@ -29,30 +29,33 @@
         </Grid.RowDefinitions>
 
         <TabControl TabStripPlacement="Left" Grid.Row="1" Margin="0, 0, 0, 10"
-                    ItemsSource="{Binding Tabs}">
+                    ItemsSource="{Binding Tabs}"
+                    SelectedItem="{Binding SelectedTab}">
             <TabControl.ItemTemplate>
-                <!-- DataTemplate für die Tab-Header -->
+                <!-- DataTemplate for Tab Header -->
                 <DataTemplate>
-                    <TextBlock>
-                        <Run Text="{Binding TabTitle}" />
-                        <Hyperlink Command="{Binding RemoveTabCommand}"
-                                   CommandParameter="{Binding}">
-                            X
-                        </Hyperlink>
-                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Width="160" MaxWidth="160" Text="{Binding Title}"/>
+                        <Button Command="{Binding CloseCommand}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <materialDesign:PackIcon Kind="Close"  Foreground="Red"  Background="Transparent"/>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
-                <!-- DataTemplate für den Inhalt der Tabs -->
+                <!-- DataTemplate for Tab Content -->
                 <DataTemplate>
-                    <!-- Hier den Inhalt des Tabs basierend auf der Content-Eigenschaft des Tabs anzeigen -->
-                    <ContentPresenter Content="{Binding TabContent}" />
+                    <ContentPresenter Content="{Binding Content}"/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
 
-        <!-- Button zum Hinzufügen eines neuen Tabs -->
+        <!-- Create Tab Button -->
         <Button Content="Neuen Tab Hinzufügen"  HorizontalAlignment="Left" VerticalAlignment="Bottom" 
-                Grid.Row="2" Margin="5" Command="{Binding AddTabCommand}" />
+                Grid.Row="2" Margin="5" Command="{Binding AddTabCommand}"/>
     </Grid>
 </Window>

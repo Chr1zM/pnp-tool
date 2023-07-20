@@ -14,12 +14,8 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily= "{StaticResource MaterialDesignFont}"
-             d:DesignHeight="674" d:DesignWidth="955">
-
-    <!-- Setzen Sie das DataContext auf das MainWindowViewModel -->
-    <UserControl.DataContext>
-        <viewModel:MainViewModel />
-    </UserControl.DataContext>
+             d:DesignHeight="782" d:DesignWidth="1000">
+    <!-- TODO: Set DataContext auf das CharacterSheetViewModel -->
 
     <Grid>
         <!-- TODO: Layout für den Charakterbogen -->

@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Xaml.Behaviors.Core;
 using pnp_tool.Model;
 using pnp_tool.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,16 +17,31 @@ namespace pnp_tool.ViewModel
     public class MainViewModel : ViewModelBase
     {
         public ObservableCollection<Tab> Tabs { get; }
-        public RelayCommand AddTabCommand { get; }
-        public RelayCommand<Tab> RemoveTabCommand { get; }
+        public ICommand AddTabCommand { get; }
+
+        private Tab _selectedTab;
+        public Tab SelectedTab
+        {
+            get => _selectedTab;
+            set
+            {
+                if (_selectedTab != value)
+                {
+                    _selectedTab = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         public MainViewModel()
         {
             Tabs = new ObservableCollection<Tab>();
+            Tabs.CollectionChanged += Tabs_CollectionChanged;
 
-            AddTabCommand = new RelayCommand(AddTab);
-            RemoveTabCommand = new RelayCommand<Tab>(RemoveTab);
+            AddTabCommand = new ActionCommand(AddTab);
         }
+
+
 
         /// <summary>
         /// Creates a new tab item
@@ -34,19 +51,39 @@ namespace pnp_tool.ViewModel
         {
             CharacterSheetView characterSheet = new CharacterSheetView();
 
-            Tabs.Add(new Tab(this, characterSheet));
-            // TODO display / select the created Tab
+            Tab tab = new Tab(characterSheet);
+            Tabs.Add(tab);
+
+            // display the created Tab
+            SelectedTab = tab;
         }
 
         /// <summary>
         /// Deletes a tab item and removes it from the tab control.
         /// </summary>
-        /// <param name="tab">Tab that's getting removed</param>
-        private void RemoveTab(Tab tab)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTabCloseRequested(object sender, EventArgs e)
         {
-            // TODO kommt nicht hier hin
-            System.Diagnostics.Debug.WriteLine("RemoveTab method called");
-            if (tab != null) Tabs.Remove(tab);
+            if (sender is Tab tab) Tabs.Remove(tab);
+        }
+
+        private void Tabs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Tab tab;
+
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    tab = (Tab)e.NewItems[0];
+                    tab.CloseRequested += OnTabCloseRequested;
+                    break;
+                case NotifyCollectionChangedAction.Remove:
+                    tab = (Tab)e.OldItems[0];
+                    tab.CloseRequested -= OnTabCloseRequested;
+                    break;
+                default: break;
+            }
         }
     }
 }
