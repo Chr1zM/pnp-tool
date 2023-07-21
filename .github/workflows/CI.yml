@@ -1,5 +1,20 @@
 name: CI
-on: 
+on:
+  workflow_call:
+    inputs:
+      build-configuration:
+        default: 'Release'
+        required: false
+        type: string
+      mdix-version:
+        required: true
+        type: string
+      mdix-colors-version:
+        required: true
+        type: string
+      mdix-mahapps-version:
+        required: true
+        type: string
   pull_request: 
     branches: 
       - "main"
@@ -9,6 +24,7 @@ on:
       - ".gitignore"
     branches:
       - "main"
+
 
 jobs:
   build:
@@ -32,3 +48,7 @@ jobs:
   
       - name: Build
         run: dotnet build ${{ env.solution }} --no-restore -p:Platform="Any CPU"
+        env:
+          MDIXVersion: ${{ inputs.mdix-version }}
+          MDIXColorsVersion: ${{ inputs.mdix-colors-version }} 
+          MDIXMahAppsVersion: ${{ inputs.mdix-mahapps-version }}
