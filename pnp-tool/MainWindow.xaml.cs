@@ -18,7 +18,7 @@ namespace pnp_tool
 
             Messenger.Default.Register<SnackbarMessage>(
                 this,
-                (message) => MainSnackbar.MessageQueue.Enqueue(message.Content, null, null, null, false, true)
+                (message) => MainSnackbar.MessageQueue.Enqueue(message.Content, null, null, null, true, false, TimeSpan.FromSeconds(1))
             );
         }
     }

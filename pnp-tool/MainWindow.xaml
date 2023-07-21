@@ -34,16 +34,25 @@
             <TabControl.ItemTemplate>
                 <!-- DataTemplate for Tab Header -->
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Width="160" MaxWidth="160" Text="{Binding Title}"/>
-                        <Button Command="{Binding CloseCommand}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <materialDesign:PackIcon Kind="Close"  Foreground="Red"  Background="Transparent"/>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
+                    <Border>
+                        <!-- Binding for MiddleClick Tab-Closing -->
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="MiddleClick" Command="{Binding CloseCommand}" />
+                        </Border.InputBindings>
+                        
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="160" MaxWidth="160" Text="{Binding Title}">
+
+                            </TextBlock>
+                            <Button Command="{Binding CloseCommand}">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <materialDesign:PackIcon Kind="Close"  Foreground="Red"  Background="Transparent"/>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </StackPanel>
+                    </Border>
                 </DataTemplate>
             </TabControl.ItemTemplate>
             <TabControl.ContentTemplate>
