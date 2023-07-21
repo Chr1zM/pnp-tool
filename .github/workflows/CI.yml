@@ -47,7 +47,7 @@ jobs:
         run: dotnet restore ${{ env.solution }}
   
       - name: Build
-        run: dotnet build ${{ env.solution }} --no-restore -p:Platform="Any CPU"
+        run: dotnet build ${{ env.solution }} --configuration ${{ inputs.build-configuration }} --no-restore -p:Platform="Any CPU" -p:TreatWarningsAsErrors=True
         env:
           MDIXVersion: ${{ inputs.mdix-version }}
           MDIXColorsVersion: ${{ inputs.mdix-colors-version }} 
