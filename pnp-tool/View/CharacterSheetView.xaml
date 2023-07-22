@@ -17,10 +17,89 @@
              d:DesignHeight="782" d:DesignWidth="1000">
     <!-- TODO: Set DataContext auf das CharacterSheetViewModel -->
 
+    <UserControl.DataContext>
+        <viewModel:CharacterSheetViewModel />
+    </UserControl.DataContext>
+
     <Grid>
-        <!-- TODO: Layout für den Charakterbogen -->
-        <!-- Name, Alter, Klasse, Attribute usw. -->
-        <TextBlock >Characterbogen erfolgreich geladen</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Persönlichkeit -->
+        <GroupBox Grid.Row="0" Header="Persönlichkeit">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Name:" />
+                    <TextBox Text="Chris" />
+                </StackPanel>
+                <!-- Weitere Persönlichkeitsdetails hier -->
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Attribute -->
+        <GroupBox Grid.Row="1" Header="Attribute">
+            <StackPanel>
+                <!-- Hier können Sie weitere Attribute hinzufügen -->
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Stärke:" />
+                    <TextBlock Text="10" />
+                    <ProgressBar Minimum="5" Maximum="14" Value="10" />
+                </StackPanel>
+                <!-- Weitere Attribute hier -->
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Stärken -->
+        <GroupBox Grid.Row="2" Header="Stärken">
+            <ListBox>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!-- Button zum Hinzufügen von Stärken -->
+        </GroupBox>
+
+        <!-- Schwächen -->
+        <GroupBox Grid.Row="3" Header="Schwächen">
+            <ListBox>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!-- Button zum Hinzufügen von Schwächen -->
+        </GroupBox>
+
+        <!-- Inventar -->
+        <GroupBox Grid.Row="4" Header="Inventar">
+            <ListBox>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!-- Button zum Hinzufügen von Inventar-Items -->
+        </GroupBox>
+
+        <!-- Bild -->
+        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Bild">
+            <Image Width="200" Height="300" />
+            <!-- Button zum Auswählen eines Bildes -->
+        </GroupBox>
     </Grid>
-    
+
 </UserControl>

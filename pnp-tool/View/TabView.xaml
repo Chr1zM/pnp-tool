@@ -57,7 +57,7 @@
             <TabControl.ContentTemplate>
                 <!-- DataTemplate for Tab Content -->
                 <DataTemplate>
-                    <ContentPresenter Content="{Binding Content}"/>
+                    <ContentPresenter Margin="5" Content="{Binding Content}"/>
                 </DataTemplate>
             </TabControl.ContentTemplate>
         </TabControl>
