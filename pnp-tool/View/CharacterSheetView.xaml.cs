@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using pnp_tool.ViewModel;
+using System.Windows.Controls;
 
 namespace pnp_tool.View
 {
@@ -10,6 +11,7 @@ namespace pnp_tool.View
         public CharacterSheetView()
         {
             InitializeComponent();
+            DataContext = new CharacterSheetViewModel();
         }
     }
 }
