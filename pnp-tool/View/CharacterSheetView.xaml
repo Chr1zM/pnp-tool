@@ -37,26 +37,85 @@
 
         <!-- Persönlichkeit -->
         <GroupBox Grid.Row="0" Header="Persönlichkeit">
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Name:" />
-                    <TextBox Text="Chris" />
-                </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Name:" FontWeight="Bold"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="Character" />
+
+                <Label Grid.Column="0" Grid.Row="1" Content="Klasse:" FontWeight="Bold"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="Paladin" />
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Rasse:" FontWeight="Bold"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="Mensch" />
+
+                <Label Grid.Column="0" Grid.Row="3" Content="HP:" FontWeight="Bold"/>
+                <TextBox Grid.Column="1" Grid.Row="3" InputScope="Number" Text="20" />
+
+                <Label Grid.Column="0" Grid.Row="4" Content="Mana:" FontWeight="Bold"/>
+                <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="10" />
                 <!-- Weitere Persönlichkeitsdetails hier -->
-            </StackPanel>
+            </Grid>
         </GroupBox>
 
         <!-- Attribute -->
         <GroupBox Grid.Row="1" Header="Attribute">
-            <StackPanel>
-                <!-- Hier können Sie weitere Attribute hinzufügen -->
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Stärke:" />
-                    <TextBlock Text="10" />
-                    <ProgressBar Minimum="5" Maximum="14" Value="10" />
-                </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Column="0" Grid.Row="0" Content="Stärke:" FontWeight="Bold"/>
+                <Slider Grid.Column="1" Grid.Row="0" Minimum="5" Maximum="14" Value="11" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                <Label Grid.Column="0" Grid.Row="1" Content="Geschicklichkeit:" FontWeight="Bold"/>
+                <Slider Grid.Column="1" Grid.Row="1" Minimum="5" Maximum="14" Value="10" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                <Label Grid.Column="0" Grid.Row="2" Content="Intelligenz:" FontWeight="Bold"/>
+                <Slider Grid.Column="1" Grid.Row="2" Minimum="5" Maximum="14" Value="6" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+                
+                <Label Grid.Column="0" Grid.Row="3" Content="Weisheit:" FontWeight="Bold"/>
+                <Slider Grid.Column="1" Grid.Row="3" Minimum="5" Maximum="14" Value="5" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                <Label Grid.Column="0" Grid.Row="4" Content="Charisma:" FontWeight="Bold"/>
+                <Slider Grid.Column="1" Grid.Row="4" Minimum="5" Maximum="14" Value="13" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                <Label Grid.Column="0" Grid.Row="5" Content="Mut:" FontWeight="Bold"/>
+                <Slider Grid.Column="1" Grid.Row="5" Minimum="5" Maximum="14" Value="9" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
                 <!-- Weitere Attribute hier -->
-            </StackPanel>
+            </Grid>
         </GroupBox>
 
         <!-- Stärken -->
@@ -96,7 +155,7 @@
         </GroupBox>
 
         <!-- Bild -->
-        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Bild">
+        <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Bild">
             <Image Width="200" Height="300" />
             <!-- Button zum Auswählen eines Bildes -->
         </GroupBox>
