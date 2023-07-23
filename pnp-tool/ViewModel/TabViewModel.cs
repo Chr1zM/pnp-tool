@@ -25,15 +25,15 @@ namespace pnp_tool.ViewModel
         private HashSet<string> usedTabNames;
         public ICommand AddTabCommand { get; }
 
-        private Tab _selectedTab;
+        private Tab selectedTab;
         public Tab SelectedTab
         {
-            get => _selectedTab;
+            get => selectedTab;
             set
             {
-                if (_selectedTab != value)
+                if (selectedTab != value)
                 {
-                    _selectedTab = value;
+                    selectedTab = value;
                     RaisePropertyChanged();
                 }
             }
