@@ -15,7 +15,6 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily= "{StaticResource MaterialDesignFont}"
              d:DesignHeight="782" d:DesignWidth="1000">
-    <!-- TODO: Set DataContext auf das CharacterSheetViewModel -->
 
     <UserControl.DataContext>
         <viewModel:CharacterSheetViewModel />
