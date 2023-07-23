@@ -40,7 +40,10 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -51,19 +54,32 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Name:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Text="Character" />
+                <TextBox Grid.Column="1" Grid.Row="0" Text="Character" TextAlignment="Center"/>
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Klasse:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="1" Text="Paladin" />
+                <TextBox Grid.Column="1" Grid.Row="1" Text="Paladin" TextAlignment="Center"/>
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Rasse:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Text="Mensch" />
+                <TextBox Grid.Column="1" Grid.Row="2" Text="Mensch" TextAlignment="Center"/>
 
                 <Label Grid.Column="0" Grid.Row="3" Content="HP:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="3" InputScope="Number" Text="20" />
+                <TextBox Grid.Column="1" Grid.Row="3" InputScope="Number" Text="20" TextAlignment="Center"
+                         Width="18"/>
+                <Label Grid.Column="2" Grid.Row="3" Content="/" />
+                <TextBox Grid.Column="3" Grid.Row="3" InputScope="Number" Text="30" TextAlignment="Center"
+                         Width="18"/>
+                <ProgressBar Grid.Column="4" Grid.Row="3" Minimum="0" Maximum="30" Value="20" 
+                     Height="15" Margin="5,0" />
 
                 <Label Grid.Column="0" Grid.Row="4" Content="Mana:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="10" />
+                <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="10" TextAlignment="Center"
+                         Width="18"/>
+                <Label Grid.Column="2" Grid.Row="4" Content="/" />
+                <TextBox Grid.Column="3" Grid.Row="4" InputScope="Number" Text="10" TextAlignment="Center"
+                         Width="18"/>
+                <ProgressBar Grid.Column="4" Grid.Row="4" Minimum="0" Maximum="10" Value="10" 
+                     Height="15" Margin="5,0" />
+
                 <!-- Weitere Persönlichkeitsdetails hier -->
             </Grid>
         </GroupBox>
