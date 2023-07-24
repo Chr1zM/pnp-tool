@@ -20,6 +20,19 @@
         <viewModel:CharacterSheetViewModel />
     </UserControl.DataContext>
 
+    <!-- Custom Styles and Resources -->
+    <UserControl.Resources>
+        <Style x:Key="HealthProgressBarStyle" TargetType="ProgressBar" BasedOn="{StaticResource MaterialDesignLinearProgressBar}">
+            <Setter Property="Foreground" Value="DarkRed" />
+            <Setter Property="Background" Value="IndianRed" />
+        </Style>
+
+        <Style x:Key="ManaProgressBarStyle" TargetType="ProgressBar" BasedOn="{StaticResource MaterialDesignLinearProgressBar}">
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="Background" Value="DeepSkyBlue" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -34,12 +47,12 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Persönlichkeit -->
+        <!-- Personality -->
         <GroupBox Grid.Row="0" Header="Persönlichkeit">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -64,26 +77,26 @@
                 <Label Grid.Column="0" Grid.Row="3" Content="HP:" FontWeight="Bold"/>
                 <TextBox Grid.Column="1" Grid.Row="3" InputScope="Number" Text="20" TextAlignment="Center"
                          Width="18"/>
-                <Label Grid.Column="2" Grid.Row="3" Content="/" />
+                <Label Grid.Column="2" Grid.Row="3" Content="/" FontWeight="Bold" />
                 <TextBox Grid.Column="3" Grid.Row="3" InputScope="Number" Text="30" TextAlignment="Center"
                          Width="18"/>
                 <ProgressBar Grid.Column="4" Grid.Row="3" Minimum="0" Maximum="30" Value="20" 
-                     Height="15" Margin="5,0" />
+                     Height="15" Margin="40,0" Style="{StaticResource HealthProgressBarStyle}"/>
 
                 <Label Grid.Column="0" Grid.Row="4" Content="Mana:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="10" TextAlignment="Center"
+                <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="3" TextAlignment="Center"
                          Width="18"/>
-                <Label Grid.Column="2" Grid.Row="4" Content="/" />
+                <Label Grid.Column="2" Grid.Row="4" Content="/" FontWeight="Bold" />
                 <TextBox Grid.Column="3" Grid.Row="4" InputScope="Number" Text="10" TextAlignment="Center"
                          Width="18"/>
-                <ProgressBar Grid.Column="4" Grid.Row="4" Minimum="0" Maximum="10" Value="10" 
-                     Height="15" Margin="5,0" />
+                <ProgressBar Grid.Column="4" Grid.Row="4" Minimum="0" Maximum="10" Value="3" 
+                     Height="15" Margin="40,0" Style="{StaticResource ManaProgressBarStyle}" />
 
-                <!-- Weitere Persönlichkeitsdetails hier -->
+                <!-- more Personality details here -->
             </Grid>
         </GroupBox>
 
-        <!-- Attribute -->
+        <!-- Attributes -->
         <GroupBox Grid.Row="1" Header="Attribute">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -129,11 +142,11 @@
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
 
-                <!-- Weitere Attribute hier -->
+                <!-- more Attributes here -->
             </Grid>
         </GroupBox>
 
-        <!-- Stärken -->
+        <!-- Strengths -->
         <GroupBox Grid.Row="2" Header="Stärken">
             <ListBox>
                 <ListBox.ItemTemplate>
@@ -142,10 +155,10 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <!-- Button zum Hinzufügen von Stärken -->
+            <!-- TODO: Button zum Hinzufügen von Stärken -->
         </GroupBox>
 
-        <!-- Schwächen -->
+        <!-- Weaknesses -->
         <GroupBox Grid.Row="3" Header="Schwächen">
             <ListBox>
                 <ListBox.ItemTemplate>
@@ -154,10 +167,10 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <!-- Button zum Hinzufügen von Schwächen -->
+            <!-- TODO: Button zum Hinzufügen von Schwächen -->
         </GroupBox>
 
-        <!-- Inventar -->
+        <!-- Inventory -->
         <GroupBox Grid.Row="4" Header="Inventar">
             <ListBox>
                 <ListBox.ItemTemplate>
@@ -166,13 +179,13 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <!-- Button zum Hinzufügen von Inventar-Items -->
+            <!-- TODO: Button zum Hinzufügen von Inventar-Items -->
         </GroupBox>
 
-        <!-- Bild -->
+        <!-- Picture -->
         <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Bild">
-            <Image Width="200" Height="300" />
-            <!-- Button zum Auswählen eines Bildes -->
+            <Image Width="300" Height="400" />
+            <!-- TODO: Button zum Auswählen eines Bildes -->
         </GroupBox>
     </Grid>
 
