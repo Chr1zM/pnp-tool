@@ -66,30 +66,30 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Name:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="0" Text="Character" TextAlignment="Center" FontFamily="{StaticResource AceRecordsPnP}"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name, Mode=TwoWay}" TextAlignment="Center" FontFamily="{StaticResource AceRecordsPnP}"/>
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Klasse:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="1" Text="Paladin" TextAlignment="Center"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Class, Mode=TwoWay}" TextAlignment="Center"/>
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Rasse:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Text="Mensch" TextAlignment="Center"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Race, Mode=TwoWay}" TextAlignment="Center"/>
 
                 <Label Grid.Column="0" Grid.Row="3" Content="HP:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="3" InputScope="Number" Text="20" TextAlignment="Center"
+                <TextBox Grid.Column="1" Grid.Row="3" InputScope="Number" Text="{Binding CurrentHP}" TextAlignment="Center"
                          Width="18"/>
                 <Label Grid.Column="2" Grid.Row="3" Content="/" FontWeight="Bold" />
-                <TextBox Grid.Column="3" Grid.Row="3" InputScope="Number" Text="30" TextAlignment="Center"
+                <TextBox Grid.Column="3" Grid.Row="3" InputScope="Number" Text="{Binding MaxHP}" TextAlignment="Center"
                          Width="18"/>
-                <ProgressBar Grid.Column="4" Grid.Row="3" Minimum="0" Maximum="30" Value="20" 
+                <ProgressBar Grid.Column="4" Grid.Row="3" Minimum="0" Maximum="{Binding MaxHP}" Value="{Binding CurrentHP}" 
                      Height="15" Margin="40,0" Style="{StaticResource HealthProgressBarStyle}"/>
 
                 <Label Grid.Column="0" Grid.Row="4" Content="Mana:" FontWeight="Bold"/>
-                <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="3" TextAlignment="Center"
+                <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="{Binding CurrentMana}" TextAlignment="Center"
                          Width="18"/>
                 <Label Grid.Column="2" Grid.Row="4" Content="/" FontWeight="Bold" />
-                <TextBox Grid.Column="3" Grid.Row="4" InputScope="Number" Text="10" TextAlignment="Center"
+                <TextBox Grid.Column="3" Grid.Row="4" InputScope="Number" Text="{Binding MaxMana}" TextAlignment="Center"
                          Width="18"/>
-                <ProgressBar Grid.Column="4" Grid.Row="4" Minimum="0" Maximum="10" Value="3" 
+                <ProgressBar Grid.Column="4" Grid.Row="4" Minimum="0" Maximum="{Binding MaxMana}" Value="{Binding CurrentMana}" 
                      Height="15" Margin="40,0" Style="{StaticResource ManaProgressBarStyle}" />
 
                 <!-- more Personality details here -->
@@ -113,32 +113,32 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Column="0" Grid.Row="0" Content="Stärke:" FontWeight="Bold"/>
-                <Slider Grid.Column="1" Grid.Row="0" Minimum="5" Maximum="14" Value="11" 
+                <Slider Grid.Column="1" Grid.Row="0" Minimum="5" Maximum="14" Value="{Binding Strength, Mode=TwoWay}"
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
 
                 <Label Grid.Column="0" Grid.Row="1" Content="Geschicklichkeit:" FontWeight="Bold"/>
-                <Slider Grid.Column="1" Grid.Row="1" Minimum="5" Maximum="14" Value="10" 
+                <Slider Grid.Column="1" Grid.Row="1" Minimum="5" Maximum="14" Value="{Binding Dexterity, Mode=TwoWay}"
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
 
                 <Label Grid.Column="0" Grid.Row="2" Content="Intelligenz:" FontWeight="Bold"/>
-                <Slider Grid.Column="1" Grid.Row="2" Minimum="5" Maximum="14" Value="6" 
+                <Slider Grid.Column="1" Grid.Row="2" Minimum="5" Maximum="14" Value="{Binding Intelligence, Mode=TwoWay}" 
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
                 
                 <Label Grid.Column="0" Grid.Row="3" Content="Weisheit:" FontWeight="Bold"/>
-                <Slider Grid.Column="1" Grid.Row="3" Minimum="5" Maximum="14" Value="5" 
+                <Slider Grid.Column="1" Grid.Row="3" Minimum="5" Maximum="14" Value="{Binding Wisdom, Mode=TwoWay}" 
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
 
                 <Label Grid.Column="0" Grid.Row="4" Content="Charisma:" FontWeight="Bold"/>
-                <Slider Grid.Column="1" Grid.Row="4" Minimum="5" Maximum="14" Value="13" 
+                <Slider Grid.Column="1" Grid.Row="4" Minimum="5" Maximum="14" Value="{Binding Charisma, Mode=TwoWay}" 
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
 
                 <Label Grid.Column="0" Grid.Row="5" Content="Mut:" FontWeight="Bold"/>
-                <Slider Grid.Column="1" Grid.Row="5" Minimum="5" Maximum="14" Value="9" 
+                <Slider Grid.Column="1" Grid.Row="5" Minimum="5" Maximum="14" Value="{Binding Courage, Mode=TwoWay}" 
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
 

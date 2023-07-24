@@ -26,7 +26,26 @@ namespace pnp_tool.Model
         public List<string> Inventory { get; set; }
         public string CharacterImage { get; set; }
 
+        public CharacterSheet()
+        {
+            Name = string.Empty;
+            Class = string.Empty;
+            Race = string.Empty;
+            MaxHP = 30;
+            CurrentHP = 30;
+            MaxMana = 10;
+            CurrentMana = 10;
 
+            Strength = 5;
+            Dexterity = 5;
+            Intelligence = 5;
+            Wisdom = 5;
+            Charisma = 5;
+            Courage = 5;
 
+            Strengths = new List<string>();
+            Inventory = new List<string>();
+            CharacterImage = string.Empty;
+        }
     }
 }
