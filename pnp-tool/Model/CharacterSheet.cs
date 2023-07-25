@@ -44,6 +44,7 @@ namespace pnp_tool.Model
             Courage = 5;
 
             Strengths = new List<string>();
+            Weaknesses = new List<string>();
             Inventory = new List<string>();
             CharacterImage = string.Empty;
         }

@@ -1,17 +1,27 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Win32;
+using Microsoft.Xaml.Behaviors.Core;
 using pnp_tool.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace pnp_tool.ViewModel
 {
     public class CharacterSheetViewModel : ViewModelBase
     {
         private CharacterSheet characterSheet { get; set; }
+
+        public ICommand SelectCharacterImageCommand { get; }
+        public ICommand RemoveCharacterImageCommand { get; }
+        public ICommand AddStrengthCommand { get; }
+        public ICommand AddWeaknessCommand { get; }
 
         /* Character Personality */
         public string Name
@@ -86,14 +96,53 @@ namespace pnp_tool.ViewModel
         }
 
         /* Character Strengths and Weaknesses */
-
+        public ObservableCollection<string> Strengths { get; }
+        public ObservableCollection<string> Weaknesses { get; }
 
         /* Character Inventory */
 
 
+        /* Character Profile Image */
+        public string CharacterImage
+        {
+            get => characterSheet.CharacterImage;
+            set { characterSheet.CharacterImage = value; RaisePropertyChanged(); }
+        }
+
         public CharacterSheetViewModel()
         {
             characterSheet = new CharacterSheet();
+
+            Strengths = new ObservableCollection<string>(characterSheet.Strengths);
+            Strengths.CollectionChanged += Strengths_CollectionChanged;
+
+            Weaknesses = new ObservableCollection<string>(characterSheet.Weaknesses);
+            Weaknesses.CollectionChanged += Weaknesses_CollectionChanged;
+
+            SelectCharacterImageCommand = new ActionCommand(SelectCharacterImage);
+            RemoveCharacterImageCommand = new ActionCommand(RemoveCharacterImage);
+            AddStrengthCommand = new RelayCommand<string>(AddStrength);
+            AddWeaknessCommand = new RelayCommand<string>(AddWeakness);
         }
+
+        private void Strengths_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Strengths.Add((string)e.NewItems[0]);
+        private void Weaknesses_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Weaknesses.Add((string)e.NewItems[0]);
+
+        private void SelectCharacterImage()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                CharacterImage = openFileDialog.FileName;
+            }
+        }
+
+        private void RemoveCharacterImage() => CharacterImage = null;
+
+        private void AddStrength(string strength) => Strengths.Add(strength);
+        private void AddWeakness(string weakness) => Weaknesses.Add(weakness);
+
+
     }
 }

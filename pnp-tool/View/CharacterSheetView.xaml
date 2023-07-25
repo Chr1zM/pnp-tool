@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:pnp_tool.View"
              xmlns:viewModel="clr-namespace:pnp_tool.ViewModel"
+             xmlns:utils="clr-namespace:pnp_tool.Utils"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -14,7 +15,7 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily= "{StaticResource ImmortalPnP}"
-             d:DesignHeight="782" d:DesignWidth="1000">
+             d:DesignHeight="800" d:DesignWidth="1000">
 
     <UserControl.DataContext>
         <viewModel:CharacterSheetViewModel />
@@ -126,7 +127,7 @@
                 <Slider Grid.Column="1" Grid.Row="2" Minimum="5" Maximum="14" Value="{Binding Intelligence, Mode=TwoWay}" 
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
                         Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
-                
+
                 <Label Grid.Column="0" Grid.Row="3" Content="Weisheit:" FontWeight="Bold"/>
                 <Slider Grid.Column="1" Grid.Row="3" Minimum="5" Maximum="14" Value="{Binding Wisdom, Mode=TwoWay}" 
                         TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
@@ -148,26 +149,47 @@
 
         <!-- Strengths -->
         <GroupBox Grid.Row="2" Header="Stärken">
-            <ListBox>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <!-- TODO: Button zum Hinzufügen von Stärken -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" x:Name="newStrengthTextBox" MinWidth="100" HorizontalAlignment="Left" 
+                         GotFocus="NewStrengthTextBox_GotFocus" LostFocus="NewStrengthTextBox_LostFocus"
+                         Initialized="NewStrengthTextBox_Initialized" KeyDown="NewStrengthTextBox_KeyDown" />
+
+                <ListBox Grid.Row="1" ItemsSource="{Binding Strengths}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </GroupBox>
+
 
         <!-- Weaknesses -->
         <GroupBox Grid.Row="3" Header="Schwächen">
-            <ListBox>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-            <!-- TODO: Button zum Hinzufügen von Schwächen -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBox Grid.Row="0" x:Name="NewWeaknessTextBox" MinWidth="100" HorizontalAlignment="Left"
+                         GotFocus="NewWeaknessTextBox_GotFocus" LostFocus="NewWeaknessTextBox_LostFocus"
+                         Initialized="NewWeaknessTextBox_Initialized" KeyDown="NewWeaknessTextBox_KeyDown"/>
+
+                <ListBox Grid.Row="1" ItemsSource="{Binding Weaknesses}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
         </GroupBox>
 
         <!-- Inventory -->
@@ -183,10 +205,28 @@
         </GroupBox>
 
         <!-- Picture -->
-        <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Bild">
-            <Image Width="300" Height="400" />
-            <!-- TODO: Button zum Auswählen eines Bildes -->
-        </GroupBox>
-    </Grid>
+        <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="6" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Bild">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
+                <Image Grid.Row="0" Width="350" Height="500" Source="{Binding CharacterImage}"/>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Button Width="140" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                            Command="{Binding SelectCharacterImageCommand}" />
+                    <Button HorizontalAlignment="Right" VerticalAlignment="Center"  Command="{Binding RemoveCharacterImageCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Background="Transparent" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
 </UserControl>
