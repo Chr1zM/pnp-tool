@@ -156,8 +156,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBox Grid.Row="0" x:Name="newStrengthTextBox" MinWidth="100" HorizontalAlignment="Left" 
-                         GotFocus="NewStrengthTextBox_GotFocus" LostFocus="NewStrengthTextBox_LostFocus"
-                         Initialized="NewStrengthTextBox_Initialized" KeyDown="NewStrengthTextBox_KeyDown" />
+                         materialDesign:HintAssist.Hint="Neue Stärke" KeyDown="NewStrengthTextBox_KeyDown" />
 
                 <ListBox Grid.Row="1" ItemsSource="{Binding Strengths}">
                     <ListBox.ItemTemplate>
@@ -179,8 +178,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBox Grid.Row="0" x:Name="NewWeaknessTextBox" MinWidth="100" HorizontalAlignment="Left"
-                         GotFocus="NewWeaknessTextBox_GotFocus" LostFocus="NewWeaknessTextBox_LostFocus"
-                         Initialized="NewWeaknessTextBox_Initialized" KeyDown="NewWeaknessTextBox_KeyDown"/>
+                         materialDesign:HintAssist.Hint="Neue Schwäche" KeyDown="NewWeaknessTextBox_KeyDown"/>
 
                 <ListBox Grid.Row="1" ItemsSource="{Binding Weaknesses}">
                     <ListBox.ItemTemplate>

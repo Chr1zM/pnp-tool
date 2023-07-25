@@ -17,26 +17,6 @@ namespace pnp_tool.View
         }
 
         /* Strengths Events */
-        private void NewStrengthTextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text == "Neue Stärke")
-            {
-                textBox.Text = string.Empty;
-                textBox.Foreground = new SolidColorBrush(Colors.Black);
-            }
-        }
-
-        private void NewStrengthTextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            UpdatePlaceholderVisibility((TextBox)sender, "Neue Stärke");
-        }
-
-        private void NewStrengthTextBox_Initialized(object sender, System.EventArgs e)
-        {
-            UpdatePlaceholderVisibility((TextBox)sender, "Neue Stärke");
-        }
-
         private void NewStrengthTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && !string.IsNullOrWhiteSpace(newStrengthTextBox.Text))
@@ -48,26 +28,6 @@ namespace pnp_tool.View
         }
 
         /* Weaknesses Events */
-        private void NewWeaknessTextBox_GotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text == "Neue Schwäche")
-            {
-                textBox.Text = string.Empty;
-                textBox.Foreground = new SolidColorBrush(Colors.Black);
-            }
-        }
-
-        private void NewWeaknessTextBox_LostFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            UpdatePlaceholderVisibility((TextBox)sender, "Neue Schwäche");
-        }
-
-        private void NewWeaknessTextBox_Initialized(object sender, System.EventArgs e)
-        {
-            UpdatePlaceholderVisibility((TextBox)sender, "Neue Schwäche");
-        }
-
         private void NewWeaknessTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter && !string.IsNullOrWhiteSpace(NewWeaknessTextBox.Text))
@@ -75,16 +35,6 @@ namespace pnp_tool.View
                 CharacterSheetViewModel viewModel = DataContext as CharacterSheetViewModel;
                 viewModel.AddWeaknessCommand.Execute(NewWeaknessTextBox.Text);
                 NewWeaknessTextBox.Text = string.Empty;
-            }
-        }
-
-
-        private void UpdatePlaceholderVisibility(TextBox textBox, string text)
-        {
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = text;
-                textBox.Foreground = Brushes.Gray;
             }
         }
     }

@@ -89,7 +89,6 @@
     </ApplicationDefinition>
     <Compile Include="Model\CharacterSheet.cs" />
     <Compile Include="Utils\TabUtils.cs" />
-    <Compile Include="Utils\TextBoxPlaceholder.cs" />
     <Compile Include="ViewModel\CharacterSheetViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\TabViewModel.cs" />
