@@ -5,22 +5,282 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:pnp_tool.View"
              xmlns:viewModel="clr-namespace:pnp_tool.ViewModel"
+             xmlns:utils="clr-namespace:pnp_tool.Utils"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
-             TextElement.FontSize="13"
+             TextElement.FontSize="14"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily= "{StaticResource MaterialDesignFont}"
-             d:DesignHeight="782" d:DesignWidth="1000">
-    <!-- TODO: Set DataContext auf das CharacterSheetViewModel -->
+             FontFamily= "{StaticResource ImmortalPnP}"
+             d:DesignHeight="800" d:DesignWidth="1000">
 
-    <Grid>
-        <!-- TODO: Layout für den Charakterbogen -->
-        <!-- Name, Alter, Klasse, Attribute usw. -->
-        <TextBlock >Characterbogen erfolgreich geladen</TextBlock>
-    </Grid>
-    
+    <UserControl.DataContext>
+        <viewModel:CharacterSheetViewModel />
+    </UserControl.DataContext>
+
+    <!-- Custom Styles and Resources -->
+    <UserControl.Resources>
+        <Style x:Key="HealthProgressBarStyle" TargetType="ProgressBar" BasedOn="{StaticResource MaterialDesignLinearProgressBar}">
+            <Setter Property="Foreground" Value="DarkRed" />
+            <Setter Property="Background" Value="IndianRed" />
+        </Style>
+
+        <Style x:Key="ManaProgressBarStyle" TargetType="ProgressBar" BasedOn="{StaticResource MaterialDesignLinearProgressBar}">
+            <Setter Property="Foreground" Value="Blue" />
+            <Setter Property="Background" Value="DeepSkyBlue" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Personality -->
+            <GroupBox Grid.Row="0" Header="Persönlichkeit" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Content="Name:" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Name, Mode=TwoWay}" TextAlignment="Center" FontFamily="{StaticResource AceRecordsPnP}"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" Content="Klasse:" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Class, Mode=TwoWay}" TextAlignment="Center"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="Rasse:" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Race, Mode=TwoWay}" TextAlignment="Center"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" Content="HP:" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" InputScope="Number" Text="{Binding CurrentHP}" TextAlignment="Center"
+                         Width="18"/>
+                    <Label Grid.Column="2" Grid.Row="3" Content="/" FontWeight="Bold" />
+                    <TextBox Grid.Column="3" Grid.Row="3" InputScope="Number" Text="{Binding MaxHP}" TextAlignment="Center"
+                         Width="18"/>
+                    <ProgressBar Grid.Column="4" Grid.Row="3" Minimum="0" Maximum="{Binding MaxHP}" Value="{Binding CurrentHP}" 
+                     Height="15" Margin="40,0" Style="{StaticResource HealthProgressBarStyle}"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" Content="Mana:" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1" Grid.Row="4" InputScope="Number" Text="{Binding CurrentMana}" TextAlignment="Center"
+                         Width="18"/>
+                    <Label Grid.Column="2" Grid.Row="4" Content="/" FontWeight="Bold" />
+                    <TextBox Grid.Column="3" Grid.Row="4" InputScope="Number" Text="{Binding MaxMana}" TextAlignment="Center"
+                         Width="18"/>
+                    <ProgressBar Grid.Column="4" Grid.Row="4" Minimum="0" Maximum="{Binding MaxMana}" Value="{Binding CurrentMana}" 
+                     Height="15" Margin="40,0" Style="{StaticResource ManaProgressBarStyle}" />
+
+                    <!-- more Personality details here -->
+                </Grid>
+            </GroupBox>
+
+            <!-- Attributes -->
+            <GroupBox Grid.Row="1" Header="Attribute" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Content="Stärke:" FontWeight="Bold"/>
+                    <Slider Grid.Column="1" Grid.Row="0" Minimum="5" Maximum="14" Value="{Binding Strength, Mode=TwoWay}"
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                    <Label Grid.Column="0" Grid.Row="1" Content="Geschicklichkeit:" FontWeight="Bold"/>
+                    <Slider Grid.Column="1" Grid.Row="1" Minimum="5" Maximum="14" Value="{Binding Dexterity, Mode=TwoWay}"
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                    <Label Grid.Column="0" Grid.Row="2" Content="Intelligenz:" FontWeight="Bold"/>
+                    <Slider Grid.Column="1" Grid.Row="2" Minimum="5" Maximum="14" Value="{Binding Intelligence, Mode=TwoWay}" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                    <Label Grid.Column="0" Grid.Row="3" Content="Weisheit:" FontWeight="Bold"/>
+                    <Slider Grid.Column="1" Grid.Row="3" Minimum="5" Maximum="14" Value="{Binding Wisdom, Mode=TwoWay}" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                    <Label Grid.Column="0" Grid.Row="4" Content="Charisma:" FontWeight="Bold"/>
+                    <Slider Grid.Column="1" Grid.Row="4" Minimum="5" Maximum="14" Value="{Binding Charisma, Mode=TwoWay}" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                    <Label Grid.Column="0" Grid.Row="5" Content="Mut:" FontWeight="Bold"/>
+                    <Slider Grid.Column="1" Grid.Row="5" Minimum="5" Maximum="14" Value="{Binding Courage, Mode=TwoWay}" 
+                        TickFrequency="1" TickPlacement="BottomRight" Margin="20,5,20,0"
+                        Style="{StaticResource MaterialDesignDiscreteHorizontalSlider}"/>
+
+                    <!-- more Attributes here -->
+                </Grid>
+            </GroupBox>
+
+            <!-- Strengths -->
+            <GroupBox Grid.Row="2" Header="Stärken" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0" x:Name="newStrengthTextBox" MinWidth="100" HorizontalAlignment="Left" 
+                         materialDesign:HintAssist.Hint="Neue Stärke" KeyDown="NewStrengthTextBox_KeyDown" />
+
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Strengths}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding}" />
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveStrengthCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding}" HorizontalAlignment="Right">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </GroupBox>
+
+
+            <!-- Weaknesses -->
+            <GroupBox Grid.Row="3" Header="Schwächen" VerticalAlignment="Top" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox Grid.Row="0" x:Name="NewWeaknessTextBox" MinWidth="100" HorizontalAlignment="Left"
+                         materialDesign:HintAssist.Hint="Neue Schwäche" KeyDown="NewWeaknessTextBox_KeyDown"/>
+
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Weaknesses}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <TextBlock Text="{Binding}" />
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveWeaknessCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding}" HorizontalAlignment="Right">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </GroupBox>
+
+            <!-- Inventory -->
+            <GroupBox Grid.Row="3" Grid.Column="2" Header="Inventar" VerticalAlignment="Top" Margin="10,0,0,0" Padding="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" x:Name="NewItemTextBox" MinWidth="100" HorizontalAlignment="Left"
+                         materialDesign:HintAssist.Hint="Neues Item" KeyDown="NewItemTextBox_KeyDown"/>
+
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Inventory}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding}" />
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding}" HorizontalAlignment="Right">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </GroupBox>
+
+            <!-- Picture -->
+            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Header="Bild" Margin="10,0,0,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Width="Auto" Height="400" Margin="5" Source="{Binding CharacterImage}"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Width="150" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                            Command="{Binding SelectCharacterImageCommand}" />
+                        <Button Command="{Binding RemoveCharacterImageCommand}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+
+        </Grid>
+    </ScrollViewer>
 </UserControl>
