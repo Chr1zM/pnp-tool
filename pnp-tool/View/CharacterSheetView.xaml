@@ -170,8 +170,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" Text="{Binding}" />
-                                    <!-- TODO: Button Action -->
-                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveCharacterImageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveStrengthCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                             CommandParameter="{Binding}" HorizontalAlignment="Right">
                                         <Button.Template>
                                             <ControlTemplate>
@@ -206,9 +205,9 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
+                                    
                                     <TextBlock Text="{Binding}" />
-                                    <!-- TODO: Button Action -->
-                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveCharacterImageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveWeaknessCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                             CommandParameter="{Binding}" HorizontalAlignment="Right">
                                         <Button.Template>
                                             <ControlTemplate>
@@ -243,8 +242,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" Text="{Binding}" />
-                                    <!-- TODO: Button Action -->
-                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveCharacterImageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                             CommandParameter="{Binding}" HorizontalAlignment="Right">
                                         <Button.Template>
                                             <ControlTemplate>

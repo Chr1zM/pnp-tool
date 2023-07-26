@@ -20,9 +20,15 @@ namespace pnp_tool.ViewModel
 
         public ICommand SelectCharacterImageCommand { get; }
         public ICommand RemoveCharacterImageCommand { get; }
+
         public ICommand AddStrengthCommand { get; }
+        public ICommand RemoveStrengthCommand { get; }
+
         public ICommand AddWeaknessCommand { get; }
+        public ICommand RemoveWeaknessCommand { get; }
+
         public ICommand AddItemCommand { get; }
+        public ICommand RemoveItemCommand { get; }
 
         /* Character Personality */
         public string Name
@@ -125,23 +131,61 @@ namespace pnp_tool.ViewModel
             Inventory.CollectionChanged += Inventory_CollectionChanged;
 
             AddStrengthCommand = new RelayCommand<string>(AddStrength);
+            RemoveStrengthCommand = new RelayCommand<string>(RemoveStrength);
 
             AddWeaknessCommand = new RelayCommand<string>(AddWeakness);
+            RemoveWeaknessCommand = new RelayCommand<string>(RemoveWeakness);
 
             AddItemCommand = new RelayCommand<string>(AddItem);
+            RemoveItemCommand = new RelayCommand<string>(RemoveItem);
 
             SelectCharacterImageCommand = new ActionCommand(SelectCharacterImage);
             RemoveCharacterImageCommand = new ActionCommand(RemoveCharacterImage);
         }
 
-        private void Strengths_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Strengths.Add((string)e.NewItems[0]);
-        private void Weaknesses_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Weaknesses.Add((string)e.NewItems[0]);
+        private void Strengths_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    characterSheet.Strengths.Add((string)e.NewItems[0]); break;
+                case NotifyCollectionChangedAction.Remove:
+                    characterSheet.Strengths.Remove((string)e.OldItems[0]); break;
+                default: break;
+            }
+        }
+        private void Weaknesses_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    characterSheet.Weaknesses.Add((string)e.NewItems[0]); break;
+                case NotifyCollectionChangedAction.Remove:
+                    characterSheet.Weaknesses.Remove((string)e.OldItems[0]); break;
+                default: break;
+            }
+        }
 
-        private void Inventory_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Inventory.Add((string)e.NewItems[0]);
+        private void Inventory_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add:
+                    characterSheet.Inventory.Add((string)e.NewItems[0]); break;
+                case NotifyCollectionChangedAction.Remove:
+                    characterSheet.Inventory.Remove((string)e.OldItems[0]); break;
+                default: break;
+            }
+        }
 
         private void AddStrength(string strength) => Strengths.Add(strength);
+        private void RemoveStrength(string strength) => Strengths.Remove(strength);
+
         private void AddWeakness(string weakness) => Weaknesses.Add(weakness);
-        private void AddItem(string weakness) => Inventory.Add(weakness);
+        private void RemoveWeakness(string weakness) => Weaknesses.Remove(weakness);
+
+        private void AddItem(string item) => Inventory.Add(item);
+        private void RemoveItem(string item) => Inventory.Remove(item);
 
         private void SelectCharacterImage()
         {
@@ -152,7 +196,6 @@ namespace pnp_tool.ViewModel
                 CharacterImage = openFileDialog.FileName;
             }
         }
-
         private void RemoveCharacterImage() => CharacterImage = null;
 
     }
