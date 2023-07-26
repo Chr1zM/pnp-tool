@@ -258,7 +258,7 @@
             </GroupBox>
 
             <!-- Picture -->
-            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Header="Bild" Margin="10,0,0,10">
+            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Header="Bild" Margin="10,0,0,10" VerticalAlignment="Top">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
