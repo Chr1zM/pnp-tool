@@ -41,7 +41,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -49,7 +49,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Personality -->
-            <GroupBox Grid.Row="0" Header="Persönlichkeit">
+            <GroupBox Grid.Row="0" Header="Persönlichkeit" Padding="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -64,6 +64,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="0" Content="Name:" FontWeight="Bold"/>
@@ -98,7 +99,7 @@
             </GroupBox>
 
             <!-- Attributes -->
-            <GroupBox Grid.Row="1" Header="Attribute">
+            <GroupBox Grid.Row="1" Header="Attribute" Padding="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -111,6 +112,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Label Grid.Column="0" Grid.Row="0" Content="Stärke:" FontWeight="Bold"/>
@@ -148,7 +150,7 @@
             </GroupBox>
 
             <!-- Strengths -->
-            <GroupBox Grid.Row="2" Header="Stärken">
+            <GroupBox Grid.Row="2" Header="Stärken" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -158,19 +160,35 @@
                     <TextBox Grid.Row="0" x:Name="newStrengthTextBox" MinWidth="100" HorizontalAlignment="Left" 
                          materialDesign:HintAssist.Hint="Neue Stärke" KeyDown="NewStrengthTextBox_KeyDown" />
 
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Strengths}">
-                        <ListBox.ItemTemplate>
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Strengths}">
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding}" />
+                                    <!-- TODO: Button Action -->
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveCharacterImageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding}" HorizontalAlignment="Right">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </GroupBox>
 
 
             <!-- Weaknesses -->
-            <GroupBox Grid.Row="3" Header="Schwächen">
+            <GroupBox Grid.Row="3" Header="Schwächen" VerticalAlignment="Top" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -180,18 +198,33 @@
                     <TextBox Grid.Row="0" x:Name="NewWeaknessTextBox" MinWidth="100" HorizontalAlignment="Left"
                          materialDesign:HintAssist.Hint="Neue Schwäche" KeyDown="NewWeaknessTextBox_KeyDown"/>
 
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Weaknesses}">
-                        <ListBox.ItemTemplate>
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Weaknesses}">
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding}" />
+                                    <!-- TODO: Button Action -->
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveCharacterImageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding}" HorizontalAlignment="Right">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </GroupBox>
 
             <!-- Inventory -->
-            <GroupBox Grid.Row="3" Grid.Column="2" Header="Inventar" VerticalAlignment="Top" Margin="10,0,0,0">
+            <GroupBox Grid.Row="3" Grid.Column="2" Header="Inventar" VerticalAlignment="Top" Margin="10,0,0,0" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -199,34 +232,50 @@
                     </Grid.RowDefinitions>
                     <TextBox Grid.Row="0" x:Name="NewItemTextBox" MinWidth="100" HorizontalAlignment="Left"
                          materialDesign:HintAssist.Hint="Neues Item" KeyDown="NewItemTextBox_KeyDown"/>
-                    
-                    <ListBox Grid.Row="1" ItemsSource="{Binding Inventory}">
-                        <ListBox.ItemTemplate>
+
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Inventory}">
+                        <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding}" />
+                                    <!-- TODO: Button Action -->
+                                    <Button Grid.Column="1" Command="{Binding DataContext.RemoveCharacterImageCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                            CommandParameter="{Binding}" HorizontalAlignment="Right">
+                                        <Button.Template>
+                                            <ControlTemplate>
+                                                <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </Grid>
             </GroupBox>
 
             <!-- Picture -->
-            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Header="Bild" Margin="10,0,0,0" VerticalAlignment="Top">
+            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Header="Bild" Margin="10,0,0,10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Width="Auto" Height="500" Margin="5" Source="{Binding CharacterImage}"/>
+                    <Image Grid.Row="0" Width="Auto" Height="400" Margin="5" Source="{Binding CharacterImage}"/>
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
-                        <Button Width="140" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                        <Button Width="150" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
                             Command="{Binding SelectCharacterImageCommand}" />
-                        <Button HorizontalAlignment="Right" VerticalAlignment="Center"  Command="{Binding RemoveCharacterImageCommand}">
+                        <Button Command="{Binding RemoveCharacterImageCommand}">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <materialDesign:PackIcon Kind="CloseBold" Foreground="Red" Background="Transparent" />
+                                    <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
