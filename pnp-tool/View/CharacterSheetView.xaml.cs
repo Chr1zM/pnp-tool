@@ -37,5 +37,17 @@ namespace pnp_tool.View
                 NewWeaknessTextBox.Text = string.Empty;
             }
         }
+
+        /* Inventory Events */
+        private void NewItemTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter && !string.IsNullOrEmpty(NewItemTextBox.Text))
+            {
+                CharacterSheetViewModel viewModel = DataContext as CharacterSheetViewModel;
+                viewModel.AddItemCommand.Execute(NewItemTextBox.Text);
+                NewItemTextBox.Text = string.Empty;
+            }
+        }
+
     }
 }

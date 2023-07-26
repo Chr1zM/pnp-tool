@@ -22,6 +22,7 @@ namespace pnp_tool.ViewModel
         public ICommand RemoveCharacterImageCommand { get; }
         public ICommand AddStrengthCommand { get; }
         public ICommand AddWeaknessCommand { get; }
+        public ICommand AddItemCommand { get; }
 
         /* Character Personality */
         public string Name
@@ -99,8 +100,9 @@ namespace pnp_tool.ViewModel
         public ObservableCollection<string> Strengths { get; }
         public ObservableCollection<string> Weaknesses { get; }
 
-        /* Character Inventory */
 
+        /* Character Inventory */
+        public ObservableCollection<string> Inventory { get; }
 
         /* Character Profile Image */
         public string CharacterImage
@@ -119,14 +121,27 @@ namespace pnp_tool.ViewModel
             Weaknesses = new ObservableCollection<string>(characterSheet.Weaknesses);
             Weaknesses.CollectionChanged += Weaknesses_CollectionChanged;
 
+            Inventory = new ObservableCollection<string>(characterSheet.Inventory);
+            Inventory.CollectionChanged += Inventory_CollectionChanged;
+
+            AddStrengthCommand = new RelayCommand<string>(AddStrength);
+
+            AddWeaknessCommand = new RelayCommand<string>(AddWeakness);
+
+            AddItemCommand = new RelayCommand<string>(AddItem);
+
             SelectCharacterImageCommand = new ActionCommand(SelectCharacterImage);
             RemoveCharacterImageCommand = new ActionCommand(RemoveCharacterImage);
-            AddStrengthCommand = new RelayCommand<string>(AddStrength);
-            AddWeaknessCommand = new RelayCommand<string>(AddWeakness);
         }
 
         private void Strengths_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Strengths.Add((string)e.NewItems[0]);
         private void Weaknesses_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Weaknesses.Add((string)e.NewItems[0]);
+
+        private void Inventory_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => characterSheet.Inventory.Add((string)e.NewItems[0]);
+
+        private void AddStrength(string strength) => Strengths.Add(strength);
+        private void AddWeakness(string weakness) => Weaknesses.Add(weakness);
+        private void AddItem(string weakness) => Inventory.Add(weakness);
 
         private void SelectCharacterImage()
         {
@@ -139,10 +154,6 @@ namespace pnp_tool.ViewModel
         }
 
         private void RemoveCharacterImage() => CharacterImage = null;
-
-        private void AddStrength(string strength) => Strengths.Add(strength);
-        private void AddWeakness(string weakness) => Weaknesses.Add(weakness);
-
 
     }
 }

@@ -192,14 +192,22 @@
 
             <!-- Inventory -->
             <GroupBox Grid.Row="3" Grid.Column="2" Header="Inventar" VerticalAlignment="Top" Margin="10,0,0,0">
-                <ListBox>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="" />
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <!-- TODO: Button zum Hinzufügen von Inventar-Items -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" x:Name="NewItemTextBox" MinWidth="100" HorizontalAlignment="Left"
+                         materialDesign:HintAssist.Hint="Neues Item" KeyDown="NewItemTextBox_KeyDown"/>
+                    
+                    <ListBox Grid.Row="1" ItemsSource="{Binding Inventory}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
             </GroupBox>
 
             <!-- Picture -->
