@@ -42,11 +42,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!-- Personality -->
@@ -192,7 +191,7 @@
             </GroupBox>
 
             <!-- Inventory -->
-            <GroupBox Grid.Row="4" Header="Inventar">
+            <GroupBox Grid.Row="3" Grid.Column="2" Header="Inventar" VerticalAlignment="Top" Margin="10,0,0,0">
                 <ListBox>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -204,14 +203,14 @@
             </GroupBox>
 
             <!-- Picture -->
-            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="6" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Bild">
+            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Header="Bild" Margin="10,0,0,0" VerticalAlignment="Top">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Width="350" Height="500" Source="{Binding CharacterImage}"/>
+                    <Image Grid.Row="0" Width="Auto" Height="500" Margin="5" Source="{Binding CharacterImage}"/>
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <Button Width="140" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 

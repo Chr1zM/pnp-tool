@@ -11,9 +11,9 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <FontFamily x:Key="GothicGame">pack://application:,,,/fonts/#Gothic Titel Offiziell</FontFamily>
-            <FontFamily x:Key="ImmortalPnP">pack://application:,,,/fonts/#IMMORTAL</FontFamily>
-            <FontFamily x:Key="AceRecordsPnP">pack://application:,,,/fonts/#Ace Records</FontFamily>
+            <FontFamily x:Key="GothicGame">pack://application:,,,/Fonts/#Gothic Titel Offiziell</FontFamily>
+            <FontFamily x:Key="ImmortalPnP">pack://application:,,,/Fonts/#IMMORTAL</FontFamily>
+            <FontFamily x:Key="AceRecordsPnP">pack://application:,,,/Fonts/#Ace Records</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

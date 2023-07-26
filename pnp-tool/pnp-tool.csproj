@@ -138,9 +138,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="fonts\Gothic_Titel_Offiziell.ttf" />
-    <Resource Include="fonts\IMMORTAL.ttf" />
-    <Resource Include="fonts\Ace_Records.ttf" />
+    <Resource Include="Fonts\Gothic_Titel_Offiziell.ttf" />
+    <Resource Include="Fonts\IMMORTAL.ttf" />
+    <Resource Include="Fonts\Ace_Records.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -151,7 +151,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\favicon.ico" />
+    <Resource Include="Images\favicon.ico" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
