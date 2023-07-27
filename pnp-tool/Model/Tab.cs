@@ -21,18 +21,9 @@ namespace pnp_tool.Model
         public string Title { get; set; }
         public object Content { get; set; }
 
-        // TODO: use this constructor for giving Tab Name https://github.com/Chr1zM/pnp-tool/issues/11
         public Tab(string title, object content)
         {
             Title = title;
-            Content = content;
-
-            CloseCommand = new ActionCommand(OnCloseRequested);
-        }
-
-        public Tab(int index, object content)
-        {
-            Title = "Tab " + index;
             Content = content;
 
             CloseCommand = new ActionCommand(OnCloseRequested);
