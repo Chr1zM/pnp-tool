@@ -40,7 +40,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -49,7 +48,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Personality -->
-            <GroupBox Grid.Row="0" Header="Persönlichkeit" Padding="10">
+            <GroupBox Grid.Row="0" Grid.Column="0" Header="Persönlichkeit" Padding="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -99,7 +98,7 @@
             </GroupBox>
 
             <!-- Attributes -->
-            <GroupBox Grid.Row="1" Header="Attribute" Padding="10">
+            <GroupBox Grid.Row="1" Grid.Column="0" Header="Attribute" Padding="10">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -150,7 +149,7 @@
             </GroupBox>
 
             <!-- Strengths -->
-            <GroupBox Grid.Row="2" Header="Stärken" Padding="10">
+            <GroupBox Grid.Row="2" Grid.Column="0" Header="Stärken" Padding="10" VerticalAlignment="Top">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -187,7 +186,7 @@
 
 
             <!-- Weaknesses -->
-            <GroupBox Grid.Row="3" Header="Schwächen" VerticalAlignment="Top" Padding="10">
+            <GroupBox Grid.Row="3" Grid.Column="0" Header="Schwächen" Padding="10" VerticalAlignment="Top">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -205,7 +204,7 @@
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    
+
                                     <TextBlock Text="{Binding}" />
                                     <Button Grid.Column="1" Command="{Binding DataContext.RemoveWeaknessCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
                                             CommandParameter="{Binding}" HorizontalAlignment="Right">
@@ -222,8 +221,32 @@
                 </Grid>
             </GroupBox>
 
+            <!-- Picture -->
+            <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Header="Bild" Margin="10,0,0,10" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0" Width="Auto" Height="450" Margin="5" Source="{Binding CharacterImage}"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Width="150" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                            Command="{Binding SelectCharacterImageCommand}" />
+                        <Button Command="{Binding RemoveCharacterImageCommand}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+
             <!-- Inventory -->
-            <GroupBox Grid.Row="3" Grid.Column="2" Header="Inventar" VerticalAlignment="Top" Margin="10,0,0,0" Padding="10">
+            <GroupBox Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Header="Inventar" VerticalAlignment="Top" Margin="10,0,0,0" Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -254,30 +277,6 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                </Grid>
-            </GroupBox>
-
-            <!-- Picture -->
-            <GroupBox Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Header="Bild" Margin="10,0,0,10">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <Image Grid.Row="0" Width="Auto" Height="400" Margin="5" Source="{Binding CharacterImage}"/>
-
-                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                        <Button Width="150" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                            Command="{Binding SelectCharacterImageCommand}" />
-                        <Button Command="{Binding RemoveCharacterImageCommand}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <materialDesign:PackIcon Kind="Close" Foreground="Red" Background="Transparent" />
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </StackPanel>
                 </Grid>
             </GroupBox>
 
