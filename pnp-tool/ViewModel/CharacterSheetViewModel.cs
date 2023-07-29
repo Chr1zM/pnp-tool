@@ -36,13 +36,11 @@ namespace pnp_tool.ViewModel
             get => characterSheet.Name;
             set { characterSheet.Name = value; RaisePropertyChanged(); }
         }
-
         public string Class
         {
             get => characterSheet.Class;
             set { characterSheet.Class = value; RaisePropertyChanged(); }
         }
-
         public string Race
         {
             get => characterSheet.Race;
@@ -52,22 +50,47 @@ namespace pnp_tool.ViewModel
         public int CurrentHP
         {
             get => characterSheet.CurrentHP;
-            set { characterSheet.CurrentHP = value; RaisePropertyChanged(); }
+            set
+            {
+                if (value > MaxHP) value = MaxHP;
+
+                characterSheet.CurrentHP = value;
+                RaisePropertyChanged();
+            }
         }
         public int MaxHP
         {
             get => characterSheet.MaxHP;
-            set { characterSheet.MaxHP = value; RaisePropertyChanged(); }
+            set
+            {
+                if (value < CurrentHP) CurrentHP = value;
+
+                characterSheet.MaxHP = value;
+                RaisePropertyChanged();
+            }
         }
+
         public int CurrentMana
         {
             get => characterSheet.CurrentMana;
-            set { characterSheet.CurrentMana = value; RaisePropertyChanged(); }
+            set
+            {
+                if (value > MaxMana) value = MaxMana;
+
+                characterSheet.CurrentMana = value;
+                RaisePropertyChanged();
+            }
         }
         public int MaxMana
         {
             get => characterSheet.MaxMana;
-            set { characterSheet.MaxMana = value; RaisePropertyChanged(); }
+            set
+            {
+                if (value < CurrentMana) CurrentMana = value;
+
+                characterSheet.MaxMana = value;
+                RaisePropertyChanged();
+            }
         }
 
         /* Character Attributes */
