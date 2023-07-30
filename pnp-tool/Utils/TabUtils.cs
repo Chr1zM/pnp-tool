@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace pnp_tool.Utils
 {
-    public class TabUtils
+    public static class TabUtils
     {
 
         /// <summary>
