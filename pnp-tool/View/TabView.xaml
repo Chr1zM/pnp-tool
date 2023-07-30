@@ -15,7 +15,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily= "{StaticResource ImmortalPnP}"
              d:DesignHeight="950" d:DesignWidth="1200">
-    
+
     <!-- Set DataContext to TabViewModel -->
     <UserControl.DataContext>
         <viewModel:TabViewModel/>

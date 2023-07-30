@@ -11,8 +11,8 @@ namespace pnp_tool.ViewModel
     public class MainViewModel : ViewModelBase
     {
         public UserControl TabView { get; }
-        
-        public MainViewModel() 
+
+        public MainViewModel()
         {
             TabView = new View.TabView();
         }

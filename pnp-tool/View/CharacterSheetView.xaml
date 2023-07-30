@@ -286,11 +286,11 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Button Grid.Column="0" Width="220" Content="Charakterbogen exportieren" Command="{Binding ExportCharacterSheetCommand}"/>
                 <Button Grid.Column="1" Width="220" Content="Charakterbogen importieren" Command="{Binding ImportCharacterSheetCommand}"/>
             </Grid>
-            
+
         </Grid>
     </ScrollViewer>
 </UserControl>

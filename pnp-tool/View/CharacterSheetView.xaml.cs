@@ -28,7 +28,7 @@ namespace pnp_tool.View
             // Only numbers may be entered, else set handled true => nothing else will be done.
             e.Handled = !HasTextNonNumericCharacters(e.Text);
 
-                
+
         }
 
         /// <summary>
