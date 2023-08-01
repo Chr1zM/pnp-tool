@@ -230,7 +230,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Width="Auto" Height="450" Margin="5" Source="{Binding CharacterImage}"/>
+                    <Image Grid.Row="0" Width="Auto" Height="450" Margin="5" Source="{Binding CharacterImageBytes}"/>
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <Button Width="150" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 

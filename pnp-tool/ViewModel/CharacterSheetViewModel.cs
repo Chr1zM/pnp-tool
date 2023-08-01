@@ -8,10 +8,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace pnp_tool.ViewModel
 {
@@ -20,18 +22,23 @@ namespace pnp_tool.ViewModel
         private CharacterSheet characterSheet { get; set; }
 
         public ICommand SelectCharacterImageCommand { get; }
+
         public ICommand RemoveCharacterImageCommand { get; }
 
         public ICommand AddStrengthCommand { get; }
+
         public ICommand RemoveStrengthCommand { get; }
 
         public ICommand AddWeaknessCommand { get; }
+
         public ICommand RemoveWeaknessCommand { get; }
 
         public ICommand AddItemCommand { get; }
+
         public ICommand RemoveItemCommand { get; }
 
         public ICommand ExportCharacterSheetCommand { get; }
+
         public ICommand ImportCharacterSheetCommand { get; }
 
         /* Character Personality */
@@ -40,11 +47,13 @@ namespace pnp_tool.ViewModel
             get => characterSheet.Name;
             set { characterSheet.Name = value; RaisePropertyChanged(); }
         }
+
         public string Class
         {
             get => characterSheet.Class;
             set { characterSheet.Class = value; RaisePropertyChanged(); }
         }
+
         public string Race
         {
             get => characterSheet.Race;
@@ -103,26 +112,31 @@ namespace pnp_tool.ViewModel
             get => characterSheet.Strength;
             set { characterSheet.Strength = value; RaisePropertyChanged(); }
         }
+
         public int Dexterity
         {
             get => characterSheet.Dexterity;
             set { characterSheet.Dexterity = value; RaisePropertyChanged(); }
         }
+
         public int Intelligence
         {
             get => characterSheet.Intelligence;
             set { characterSheet.Intelligence = value; RaisePropertyChanged(); }
         }
+
         public int Wisdom
         {
             get => characterSheet.Wisdom;
             set { characterSheet.Wisdom = value; RaisePropertyChanged(); }
         }
+
         public int Charisma
         {
             get => characterSheet.Charisma;
             set { characterSheet.Charisma = value; RaisePropertyChanged(); }
         }
+
         public int Courage
         {
             get => characterSheet.Courage;
@@ -131,6 +145,7 @@ namespace pnp_tool.ViewModel
 
         /* Character Strengths and Weaknesses */
         public ObservableCollection<string> Strengths { get; }
+
         public ObservableCollection<string> Weaknesses { get; }
 
 
@@ -138,11 +153,13 @@ namespace pnp_tool.ViewModel
         public ObservableCollection<string> Inventory { get; }
 
         /* Character Profile Image */
-        public string CharacterImage
+        public byte[] CharacterImageBytes
         {
-            get => characterSheet.CharacterImage;
-            set { characterSheet.CharacterImage = value; RaisePropertyChanged(); }
+            get => characterSheet.CharacterImageBytes;
+            set { characterSheet.CharacterImageBytes = value; RaisePropertyChanged(); }
         }
+
+
 
         public CharacterSheetViewModel()
         {
@@ -227,12 +244,15 @@ namespace pnp_tool.ViewModel
         }
 
         private void AddStrength(string strength) => Strengths.Add(strength);
+
         private void RemoveStrength(string strength) => Strengths.Remove(strength);
 
         private void AddWeakness(string weakness) => Weaknesses.Add(weakness);
+
         private void RemoveWeakness(string weakness) => Weaknesses.Remove(weakness);
 
         private void AddItem(string item) => Inventory.Add(item);
+
         private void RemoveItem(string item) => Inventory.Remove(item);
 
         private void SelectCharacterImage()
@@ -244,10 +264,13 @@ namespace pnp_tool.ViewModel
 
             if (openFileDialog.ShowDialog() == true)
             {
-                CharacterImage = openFileDialog.FileName;
+                byte[] imageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                CharacterImageBytes = imageBytes;
+
             }
         }
-        private void RemoveCharacterImage() => CharacterImage = null;
+
+        private void RemoveCharacterImage() => CharacterImageBytes = null;
 
         private void ExportCharacterSheet()
         {
@@ -306,7 +329,7 @@ namespace pnp_tool.ViewModel
             Inventory.Clear();
             updatedCharacterSheet.Inventory.ForEach(Inventory.Add);
 
-            CharacterImage = updatedCharacterSheet.CharacterImage;
+            CharacterImageBytes = updatedCharacterSheet.CharacterImageBytes;
         }
     }
 }
