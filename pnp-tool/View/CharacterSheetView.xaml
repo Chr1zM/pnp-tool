@@ -41,6 +41,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -164,8 +165,8 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" Text="{Binding}" />
@@ -201,8 +202,8 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Text="{Binding}" />
@@ -229,7 +230,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Width="Auto" Height="450" Margin="5" Source="{Binding CharacterImage}"/>
+                    <Image Grid.Row="0" Width="Auto" Height="450" Margin="5" Source="{Binding CharacterImageBytes}"/>
 
                     <StackPanel Grid.Row="1" Orientation="Horizontal">
                         <Button Width="150" Content="Bild auswählen" Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
@@ -260,8 +261,8 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock Grid.Column="0" Text="{Binding}" />
@@ -279,6 +280,16 @@
                     </ItemsControl>
                 </Grid>
             </GroupBox>
+
+            <Grid Grid.Column="1" Grid.Row="4" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Width="220" Content="Charakterbogen exportieren" Command="{Binding ExportCharacterSheetCommand}"/>
+                <Button Grid.Column="1" Width="220" Content="Charakterbogen importieren" Command="{Binding ImportCharacterSheetCommand}"/>
+            </Grid>
 
         </Grid>
     </ScrollViewer>

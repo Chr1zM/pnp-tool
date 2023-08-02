@@ -30,11 +30,12 @@
         <!-- TODO Top Menu Grid.Row="0" -->
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <!-- TODO: Put this into the Top Menu -->
             <TextBlock Text="Dark Mode:" Margin="10"/>
             <ToggleButton x:Name="DarkModeToggle" Checked="DarkModeToggle_Checked" Unchecked="DarkModeToggle_Unchecked"/>
         </StackPanel>
 
         <ContentControl Grid.Row="1" Content="{Binding TabView}" />
     </Grid>
-    
+
 </Window>

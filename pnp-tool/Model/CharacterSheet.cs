@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace pnp_tool.Model
 {
@@ -24,7 +26,7 @@ namespace pnp_tool.Model
         public List<string> Strengths { get; set; }
         public List<string> Weaknesses { get; set; }
         public List<string> Inventory { get; set; }
-        public string CharacterImage { get; set; }
+        public byte[] CharacterImageBytes { get; set; }
 
         public CharacterSheet()
         {
@@ -46,7 +48,8 @@ namespace pnp_tool.Model
             Strengths = new List<string>();
             Weaknesses = new List<string>();
             Inventory = new List<string>();
-            CharacterImage = string.Empty;
+
+            CharacterImageBytes = null;
         }
     }
 }
