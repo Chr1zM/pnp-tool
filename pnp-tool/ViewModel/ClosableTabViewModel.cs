@@ -16,17 +16,17 @@ using System.Windows.Input;
 
 namespace pnp_tool.ViewModel
 {
-    public class TabViewModel : ViewModelBase
+    public class ClosableTabViewModel : ViewModelBase
     {
         private const int MAX_TABS = 16;
         private const string MAX_TABS_MESSAGE = "Maximale Anzahl an Tabs erreicht!";
 
-        public ObservableCollection<Tab> Tabs { get; }
+        public ObservableCollection<ClosableTab> Tabs { get; }
         private HashSet<string> usedTabNames;
         public ICommand AddTabCommand { get; }
 
-        private Tab selectedTab;
-        public Tab SelectedTab
+        private ClosableTab selectedTab;
+        public ClosableTab SelectedTab
         {
             get => selectedTab;
             set
@@ -39,9 +39,9 @@ namespace pnp_tool.ViewModel
             }
         }
 
-        public TabViewModel()
+        public ClosableTabViewModel()
         {
-            Tabs = new ObservableCollection<Tab>();
+            Tabs = new ObservableCollection<ClosableTab>();
             Tabs.CollectionChanged += Tabs_CollectionChanged;
 
             usedTabNames = new HashSet<string>();
@@ -65,7 +65,7 @@ namespace pnp_tool.ViewModel
 
             CharacterSheetView characterSheet = new CharacterSheetView();
 
-            Tab tab = new Tab(TabUtils.GenerateUniqueTabName(usedTabNames), characterSheet);
+            ClosableTab tab = new ClosableTab(TabUtils.GenerateUniqueTabName(usedTabNames), characterSheet);
             Tabs.Add(tab);
 
             // display the created Tab
@@ -79,7 +79,7 @@ namespace pnp_tool.ViewModel
         /// <param name="e"></param>
         private void OnTabCloseRequested(object sender, EventArgs e)
         {
-            if (sender is Tab tab)
+            if (sender is ClosableTab tab)
             {
                 Tabs.Remove(tab);
                 usedTabNames.Remove(tab.Title);
@@ -88,16 +88,16 @@ namespace pnp_tool.ViewModel
 
         private void Tabs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            Tab tab;
+            ClosableTab tab;
 
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    tab = (Tab)e.NewItems[0];
+                    tab = (ClosableTab)e.NewItems[0];
                     tab.CloseRequested += OnTabCloseRequested;
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    tab = (Tab)e.OldItems[0];
+                    tab = (ClosableTab)e.OldItems[0];
                     tab.CloseRequested -= OnTabCloseRequested;
                     break;
                 default: break;

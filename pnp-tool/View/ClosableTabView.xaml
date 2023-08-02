@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="pnp_tool.View.TabView"
+﻿<UserControl x:Class="pnp_tool.View.ClosableTabView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,7 +18,7 @@
 
     <!-- Set DataContext to TabViewModel -->
     <UserControl.DataContext>
-        <viewModel:TabViewModel/>
+        <viewModel:ClosableTabViewModel/>
     </UserControl.DataContext>
 
     <Grid>

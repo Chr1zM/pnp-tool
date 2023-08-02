@@ -91,16 +91,29 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\CharacterSheet.cs" />
+    <Compile Include="Model\ClosableTab.cs" />
     <Compile Include="Service\CharacterSheetSerializationService.cs" />
     <Compile Include="Utils\TabUtils.cs" />
     <Compile Include="ViewModel\CharacterSheetViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\TabViewModel.cs" />
+    <Compile Include="ViewModel\ClosableTabViewModel.cs" />
     <Compile Include="View\CharacterSheetView.xaml.cs">
       <DependentUpon>CharacterSheetView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\TabView.xaml.cs">
-      <DependentUpon>TabView.xaml</DependentUpon>
+    <Compile Include="View\ClosableTabView.xaml.cs">
+      <DependentUpon>ClosableTabView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NotesView.xaml.cs">
+      <DependentUpon>NotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TopMenuView.xaml.cs">
+      <DependentUpon>TopMenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorldMapView.xaml.cs">
+      <DependentUpon>WorldMapView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -118,7 +131,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\TabView.xaml">
+    <Page Include="View\ClosableTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NotesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TopMenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorldMapView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

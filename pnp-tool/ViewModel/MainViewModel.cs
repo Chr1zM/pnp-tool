@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using pnp_tool.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,12 @@ namespace pnp_tool.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        public UserControl TabView { get; }
+        
+        public UserControl TopMenuView { get; }
 
         public MainViewModel()
         {
-            TabView = new View.TabView();
+            TopMenuView = new TopMenuView();
         }
     }
 }
