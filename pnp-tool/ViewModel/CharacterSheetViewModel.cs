@@ -262,12 +262,8 @@ namespace pnp_tool.ViewModel
                 Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*"
             };
 
-            if (openFileDialog.ShowDialog() == true)
-            {
-                byte[] imageBytes = File.ReadAllBytes(openFileDialog.FileName);
-                CharacterImageBytes = imageBytes;
-
-            }
+            if (openFileDialog.ShowDialog() == true) 
+                CharacterImageBytes = File.ReadAllBytes(openFileDialog.FileName);
         }
 
         private void RemoveCharacterImage() => CharacterImageBytes = null;
