@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="pnp_tool.View.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:pnp_tool.View"
+             xmlns:viewModel="clr-namespace:pnp_tool.ViewModel"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily= "{StaticResource ImmortalPnP}"
+             d:DesignHeight="950" d:DesignWidth="1200">
+    
+    <Grid Margin="25">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- DarkMode -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Dark Mode:" Margin="10"/>
+            <ToggleButton x:Name="DarkModeToggle" Checked="DarkModeToggle_Checked" Unchecked="DarkModeToggle_Unchecked"/>
+        </StackPanel>
+        
+        <!-- More Settings here -->
+        
+    </Grid>
+    
+</UserControl>

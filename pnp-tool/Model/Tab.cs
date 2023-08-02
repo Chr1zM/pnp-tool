@@ -12,11 +12,6 @@ namespace pnp_tool.Model
 {
     public class Tab
     {
-
-        /* Event Attributes */
-        public event EventHandler CloseRequested;
-        public ICommand CloseCommand { get; }
-
         /* Model Attributes */
         public string Title { get; set; }
         public object Content { get; set; }
@@ -25,13 +20,6 @@ namespace pnp_tool.Model
         {
             Title = title;
             Content = content;
-
-            CloseCommand = new ActionCommand(OnCloseRequested);
-        }
-
-        private void OnCloseRequested()
-        {
-            CloseRequested?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using MaterialDesignThemes.Wpf;
-using pnp_tool.ViewModel;
+﻿using pnp_tool.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +17,16 @@ using System.Windows.Shapes;
 namespace pnp_tool.View
 {
     /// <summary>
-    /// Interaction logic for TabView.xaml
+    /// Interaction logic for TopMenuView.xaml
     /// </summary>
-    public partial class TabView : UserControl
+    public partial class TopMenuView : UserControl
     {
-        public TabView()
+
+        public TopMenuView()
         {
             InitializeComponent();
-            DataContext = new TabViewModel();
-
-            Messenger.Default.Register<SnackbarMessage>(
-                this,
-                (message) => MainSnackbar.MessageQueue.Enqueue(message.Content, null, null, null, true, false, TimeSpan.FromSeconds(1))
-            );
         }
+
+
     }
 }
