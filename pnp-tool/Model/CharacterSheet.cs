@@ -28,23 +28,6 @@ namespace pnp_tool.Model
         public List<string> Inventory { get; set; }
         public byte[] CharacterImageBytes { get; set; }
 
-        public BitmapImage GetCharacterImage()
-        {
-            if (CharacterImageBytes != null && CharacterImageBytes.Length > 0)
-            {
-                BitmapImage characterImage = new BitmapImage();
-                using (MemoryStream ms = new MemoryStream(CharacterImageBytes))
-                {
-                    characterImage.BeginInit();
-                    characterImage.CacheOption = BitmapCacheOption.OnLoad;
-                    characterImage.StreamSource = ms;
-                    characterImage.EndInit();
-                }
-                return characterImage;
-            }
-            return null;
-        }
-
         public CharacterSheet()
         {
             Name = string.Empty;
