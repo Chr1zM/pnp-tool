@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="pnp_tool.View.NotesView"
+﻿<UserControl x:Class="pnp_tool.View.NoteView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,11 +14,16 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily= "{StaticResource ImmortalPnP}"
              d:DesignHeight="950" d:DesignWidth="1200">
-    
-    <!-- TODO -->
-    
-    <Grid>
-        <TextBlock>Notizen TODO</TextBlock>
-    </Grid>
-    
+
+    <ScrollViewer>
+        <Grid Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <RichTextBox Grid.Row="1" />
+        </Grid>
+    </ScrollViewer>
+
 </UserControl>
