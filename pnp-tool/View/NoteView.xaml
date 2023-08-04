@@ -22,6 +22,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <!-- TODO Toolbar Grid Row 0 -->
+            
             <RichTextBox Grid.Row="1" />
         </Grid>
     </ScrollViewer>
