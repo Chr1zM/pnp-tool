@@ -11,13 +11,9 @@ namespace pnp_tool.ViewModel
 {
     public class NoteViewModel : ViewModelBase
     {
-
-
         public NoteViewModel()
         {
-
         }
-
-
+        // TODO wenn man später die Notizen ausbauen / speichern möchte
     }
 }

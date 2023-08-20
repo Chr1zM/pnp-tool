@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pnp_tool.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace pnp_tool.View
         public NoteView()
         {
             InitializeComponent();
+            DataContext = new NoteViewModel();
         }
     }
 }
