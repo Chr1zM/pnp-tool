@@ -92,19 +92,21 @@
     </ApplicationDefinition>
     <Compile Include="Model\CharacterSheet.cs" />
     <Compile Include="Model\ClosableTab.cs" />
+    <Compile Include="Model\Note.cs" />
     <Compile Include="Service\CharacterSheetSerializationService.cs" />
     <Compile Include="Utils\TabUtils.cs" />
     <Compile Include="ViewModel\CharacterSheetViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ClosableTabViewModel.cs" />
+    <Compile Include="ViewModel\NoteViewModel.cs" />
     <Compile Include="View\CharacterSheetView.xaml.cs">
       <DependentUpon>CharacterSheetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ClosableTabView.xaml.cs">
       <DependentUpon>ClosableTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NotesView.xaml.cs">
-      <DependentUpon>NotesView.xaml</DependentUpon>
+    <Compile Include="View\NoteView.xaml.cs">
+      <DependentUpon>NoteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -135,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NotesView.xaml">
+    <Page Include="View\NoteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

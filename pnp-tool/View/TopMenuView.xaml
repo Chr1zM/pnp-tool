@@ -29,7 +29,7 @@
 
             <!-- Notes Tab -->
             <TabItem Header="Notizen">
-                <local:NotesView />
+                <local:NoteView />
             </TabItem>
 
             <!-- Settings Tab -->
